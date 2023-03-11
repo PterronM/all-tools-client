@@ -41,49 +41,59 @@ function Signup() {
     }
   };
 
+  
   return (
+    <div className="login signup d-flex flex-column justify-content-center mt-5">
     <div>
-      <h1>Registro</h1>
-
       <form onSubmit={handleSignup}>
-        <label>Nombre:</label>
-        <input
+        <div className="input-login">
+        <input 
           type="nombre"
           name="nombre"
+          placeholder="Nombre"
           value={nombre}
           onChange={handlNombreChange}
         />
+        </div>
     <br />
-        <label>Email:</label>
+        <div className="input-login">
         <input
           type="email"
           name="email"
+          placeholder="Email"
           value={email}
           onChange={handleEmailChange}
         />
+        </div>
     <br />
-        <label>Password:</label>
+    <div className="input-login">
         <input
           type="password"
           name="password"
+          placeholder="Password"
           value={password}
           onChange={handlePasswordChange}
         />
+    </div>
     <br />
-        <label>Teléfono:</label>
+      <div className="input-login">
         <input
-          type="telefono"
+          id= "phone"
+          type="tel"
           name="telefono"
+          placeholder="Telefono"
           value={telefono}
           onChange={handleTelefonoChange}
         />
+      </div>
     <br />
 
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
 
         <br />
-        <button type="submit">Signup</button>
+        <button className="btn loginBtn btn-block p-2" type="submit">Registrate</button>
       </form>
+    </div>
     </div>
   );
 }

@@ -9,14 +9,18 @@ function PerfTec() {
 
 
   return (
-    <div>
-      <Link to="/create-averia" element={<CreateAveria/>}><button>Crear Averia</button></Link>
-      <Link to="/create-repuesto" element={<SolicitudRepuesto/>}><button>Solicitar Repuesto</button></Link>
-<br />
-      <ListAverias/>
-      <ListRepuestos/>
+    <div className="d-flex flex-column mt-5">
+      <div className="d-flex justify-content-around gap-3 mb-5">
+        <Link className="btnPerfTec" to="/create-averia" element={<CreateAveria/>}><p className="textBtn">Averia</p></Link>
+        <Link className="btnPerfTec" to="/create-repuesto" element={<SolicitudRepuesto/>}><p className="textBtn">Solicitud</p></Link>
+      </div>
 
-    </div>
+      <div>
+        <ListAverias/>
+        <ListRepuestos/>
+      </div>
+
+      </div>
   );
 }
 

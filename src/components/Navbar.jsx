@@ -29,8 +29,9 @@ function Navbar() {
   if (isLoggedIn === true) {
     
     return (
-      <div>
-        <NavLink onClick={handleLogOut}>Cerrar Session</NavLink>
+      <div className="nav nav-home">
+        <NavLink className="navLink text-decoration-none" to="/home" style={toggleStyles}>Atras</NavLink>
+        <NavLink className="navLink text-decoration-none" onClick={handleLogOut}>Salir</NavLink>
       </div>
     );
   } else {

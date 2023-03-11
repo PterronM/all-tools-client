@@ -51,7 +51,7 @@ function Login() {
   return (
     <div className="login d-flex flex-column justify-content-center mt-5">
 
-    <div className="d-flex justify-content-center mb-5 mt-5"><img src="logo-1.png" alt="" width={200} /></div>      
+    <div className="d-flex justify-content-center mb-5 mt-5"><img src="logo.png" alt="" width={200} /></div>      
       <form onSubmit={handleLogin}>
         <div className="input-login">
         <input
@@ -76,7 +76,7 @@ function Login() {
         <br />
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
         <br />
-        <button class="btn btn-secondary btn-sm p-2" type="submit">Acceder</button>
+        <button className="btn loginBtn btn-block p-2" type="submit">Acceder</button>
       </form>
     </div>
   );

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAveriasIdService} from "../services/averias.services";
@@ -31,18 +32,18 @@ function ListAverias() {
 
  
   return (
-    <div className="mt-3">
+    <div className="boxPendi d-flex flex-column mt-3">
       <h2>Averias Pendientes</h2>
       {allAverias.map((eachAveria) => {
         return(
           
-          <div className="d-flex justify-content-center" key={eachAveria._id}>
-            <Link to = {`/averia/${eachAveria._id}/details`} value={eachAveria._id}>{eachAveria.maquina}</Link>
-            <div className="estado">
+          <div className="d-flex justify-content-around w-75" key={eachAveria._id}>
+            <Link className="text-decoration-none" to = {`/averia/${eachAveria._id}/details`} value={eachAveria._id}>{eachAveria.createdAt}{eachAveria.maquina}</Link>
+            {/* <div className="estado"> */}
             {eachAveria.estadoAveria === "Pendiente"  && <p>⏱️</p>}  
             {eachAveria.estadoAveria === "Rechazada" && <p>❌</p>} 
             {eachAveria.estadoAveria === "Finalizada" && <p>✅</p>}
-            </div>
+            {/* </div> */}
           </div>
         ) 
       })}

@@ -2,7 +2,7 @@ import PerfTec from "../components/PerfTec"
 
 function Home() {
   return (
-    <div>
+    <div className="d-flex flex-column home" style={{backgroundColor: "white" ,height: "100vh"}}>
 
     {/* Componentes para Tecnico */}
 

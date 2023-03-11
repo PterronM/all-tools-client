@@ -32,18 +32,18 @@ function ListRepuestos() {
     }
   
     return (
-     <div className="mt-3">
+     <div className="boxPendi d-flex flex-column mt-3">
       <h2>Solicitud de Repuestos</h2>
       {allRepuestos.map((eachRepuesto) => {
         return(
           
-          <div className="d-flex justify-content-center" key={eachRepuesto._id}>
-            <Link to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}>{eachRepuesto.maquina}</Link>
-            <div className="estado">
+          <div className="d-flex justify-content-around w-75" key={eachRepuesto._id}>
+            <Link className="text-decoration-none" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}>{eachRepuesto.maquina}</Link>
+
             {eachRepuesto.estadoRepuesto === "Pendiente"  && <p>⏱️</p>}  
             {eachRepuesto.estadoRepuesto === "Rechazada" && <p>❌</p>} 
             {eachRepuesto.estadoRepuesto === "Aceptada" && <p>✅</p>}
-            </div>
+
           </div>
         ) 
       })}
