@@ -32,13 +32,17 @@ function ListRepuestos() {
     }
   
     return (
-     <div className="boxPendi d-flex flex-column mt-3">
-      <h2>Solicitud de Repuestos</h2>
+     <div className="boxPendi d-flex flex-column mt-3 gap-1">
+      <h2 className="mb-3" style={{borderBottom:"1px solid black"}}>Solicitud de Repuestos</h2>
       {allRepuestos.map((eachRepuesto) => {
         return(
           
-          <div className="d-flex justify-content-around w-75" key={eachRepuesto._id}>
-            <Link className="text-decoration-none" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}>{eachRepuesto.maquina}</Link>
+          <div className="boxDetails d-flex justify-content-between align-items-center w-75" key={eachRepuesto._id}>
+            <Link className="text-decoration-none text-black" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}><span>- {eachRepuesto.createdAt
+            .toLocaleString('en-GB',{timeZone:'UTC'})
+            .substr(0,10)
+            }</span>
+            <span> -- {eachRepuesto.maquina}</span></Link>
 
             {eachRepuesto.estadoRepuesto === "Pendiente"  && <p>⏱️</p>}  
             {eachRepuesto.estadoRepuesto === "Rechazada" && <p>❌</p>} 

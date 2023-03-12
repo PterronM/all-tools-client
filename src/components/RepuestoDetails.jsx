@@ -77,14 +77,14 @@ function RepuestoDetails() {
   
     return (
       <div>
-        <h3>Solicitud Repuesto</h3>
-  
+ 
         {isFeching === true ? (
           <h3>Buscando ....</h3>
         ) : (
-          <div className="d-flex justify-content-center">
-            <Form className="d-flex flex-column w-50 ">
+          <div className="details d-flex justify-content-center">
+            <Form className="d-flex flex-column w-50">
               <FormGroup className="justify-content-center">
+
                 <Form.Label htmlform="Maquina">Maquina</Form.Label>
                 <Form.Control
                   type="text"
@@ -115,10 +115,10 @@ function RepuestoDetails() {
               </FormGroup>
               <br />
               <FormGroup>
-                <Form.Label htmlform="imgAveria">Fotos Repuesto</Form.Label>
+                <Form.Label htmlform="imgRepuesto">Fotos Repuesto</Form.Label>
                 <Form.Control
-                  type="text-area"
-                  name="imgAveria"
+                  type="text"
+                  name="imgRepuesto"
                   value={imgRepuesto}
                   onChange={handleImgRepuestoChange}
                 />
@@ -128,7 +128,7 @@ function RepuestoDetails() {
                 <Form.Label htmlform="descriptionAveria">Descripcion</Form.Label>
                 <textarea
                   className="form-control"
-                  rows={4}
+                  rows={3}
                   type="text"
                   name="descriptionAveria"
                   value={descriptionRepuesto}
@@ -137,12 +137,11 @@ function RepuestoDetails() {
               </FormGroup>
               <br />
               <FormGroup>
-                <Form.Label htmlform="descriptionAveria">Descripcion</Form.Label>
+                <Form.Label htmlform="nSerieRepuesto">Nº de Serie del Repuesto</Form.Label>
                 <textarea
                   className="form-control"
-                  rows={4}
                   type="text"
-                  name="descriptionAveria"
+                  name="nSerieRepuesto"
                   value={nSerieRepuesto}
                   onChange={handlenSerieRepuestoChange}
                 />
@@ -151,14 +150,14 @@ function RepuestoDetails() {
               <Button
                 onClick={handleUpdateRepuestoService}
                 type="submit"
-                className="btn btn-primary mb-3"
+                className="btn btn-warning mb-3"
               >
                 Actualizar
               </Button>
               <Button
                 onClick={handleDeleteRepuestoService}
                 type="submit"
-                className="btn btn-primary mb-3"
+                className="btn btn-danger mb-3"
               >
                 Eliminar
               </Button>

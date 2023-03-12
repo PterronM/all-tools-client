@@ -60,7 +60,7 @@ function Repuesto() {
   return (
     <div>
      
-   <div className="d-flex justify-content-center">
+   <div className="d-flex justify-content-center mt-5">
    <Form className="d-flex flex-column w-50 " >
       <FormGroup className="justify-content-center" >
         <Form.Label htmlform="Maquina">Maquina</Form.Label>
@@ -84,7 +84,7 @@ function Repuesto() {
       <br/>
       <FormGroup>
         <Form.Label htmlform="descripcionRepuesto">Descripcion del Repuesto</Form.Label>
-        <textarea className="form-control" rows={4} type="text" name="descripcionRepuesto" value={descriptionRepuesto} onChange={handledescripcionRepuestoChange}/>
+        <textarea className="form-control" rows={3} type="text" name="descripcionRepuesto" value={descriptionRepuesto} onChange={handledescripcionRepuestoChange}/>
       </FormGroup>
       <br/>
       <FormGroup>
@@ -92,7 +92,7 @@ function Repuesto() {
         <Form.Control type="text-area" name="nSerieRepuesto" value={nSerieRepuesto} onChange={handlenSerieRepuestoChange}/>
       </FormGroup>
       <br/>
-      <button onClick={handleSubmit} type="submit" className="btn btn-primary mb-3">Enviar</button>
+      <button onClick={handleSubmit} type="submit" className="btn btn-success mb-3 mt-3">Enviar</button>
     </Form>
    </div>
     

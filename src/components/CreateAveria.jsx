@@ -56,7 +56,7 @@ function Averia() {
   return (
     <div>
      
-   <div className="d-flex justify-content-center">
+   <div className="d-flex justify-content-center mt-5">
    <Form className="d-flex flex-column w-50 " >
       <FormGroup className="justify-content-center" >
         <Form.Label htmlform="Maquina">Maquina</Form.Label>
@@ -84,7 +84,7 @@ function Averia() {
       </FormGroup>
       <br/>
       <br/>
-      <Button onClick={handleSubmit} type="submit" className="btn btn-primary mb-3">Enviar</Button>
+      <Button onClick={handleSubmit} type="submit" className="btn btn-success mb-3 mt-3">Enviar</Button>
     </Form>
    </div>
     

@@ -87,13 +87,13 @@ function AveriaDetails() {
 
   return (
     <div>
-      <h3>Averia</h3>
+ 
 
       {isFeching === true ? (
         <h3>Buscando ....</h3>
       ) : (
-        <div className="d-flex justify-content-center">
-          <Form className="d-flex flex-column w-50 ">
+        <div className="details d-flex justify-content-center">
+          <Form className="d-flex flex-column w-50">
             <FormGroup className="justify-content-center">
               <Form.Label htmlform="Maquina">Maquina</Form.Label>
               <Form.Control
@@ -150,21 +150,21 @@ function AveriaDetails() {
             <Button
               onClick={handleUpdateAveriaService}
               type="submit"
-              className="btn btn-primary mb-3"
+              className="btn btn-warning mb-3"
             >
               Actualizar
             </Button>
             <Button
               onClick={handleDeleteAveriaService}
               type="submit"
-              className="btn btn-primary mb-3"
+              className="btn btn-danger mb-3"
             >
               Eliminar
             </Button>
             <Button
               onClick={handleFinalizarAveriaService}
               type="submit"
-              className="btn btn-primary mb-3"
+              className="btn btn-success mb-3"
             >
               Finalizar
             </Button>

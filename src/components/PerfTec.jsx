@@ -10,7 +10,7 @@ function PerfTec() {
 
   return (
     <div className="d-flex flex-column mt-5">
-      <div className="d-flex justify-content-around gap-3 mb-5">
+      <div className="d-flex justify-content-around gap-3 mb-3">
         <Link className="btnPerfTec" to="/create-averia" element={<CreateAveria/>}><p className="textBtn">Averia</p></Link>
         <Link className="btnPerfTec" to="/create-repuesto" element={<SolicitudRepuesto/>}><p className="textBtn">Solicitud</p></Link>
       </div>

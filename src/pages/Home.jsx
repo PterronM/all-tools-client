@@ -1,4 +1,5 @@
 import PerfTec from "../components/PerfTec"
+import PerfAdm from "../components/PerfAdm"
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
 
     {/* Componentes para Adm */}
 
+      <PerfAdm/>
 
 
     </div>

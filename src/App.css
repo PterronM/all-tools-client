@@ -78,5 +78,15 @@
 .boxPendi{
   padding: 1rem;
   text-align: initial;
+  color: black;
 }
 
+.details{
+  margin-top: 2.5rem;
+}
+
+.boxDetails{
+  background-color: #f8931fac;
+  border-radius: 10px;
+  
+}
