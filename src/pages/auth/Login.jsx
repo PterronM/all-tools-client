@@ -33,8 +33,8 @@ function Login() {
       localStorage.setItem("authToken", response.data.authToken);
 
       //TODO --3----Establecer mi contexto para decirle a toda la APP que el usuario esta activo
-      authenticaUser();
       redirect("/home");
+      authenticaUser();
     } catch (error) {
       //vamos a determinar el tipo de error que recibimos, y actuar diferente en cada caso
       // console.log(error.response.status) //**-----codigo del error enviado

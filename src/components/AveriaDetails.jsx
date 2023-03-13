@@ -127,6 +127,7 @@ function AveriaDetails() {
             <FormGroup>
               <Form.Label htmlform="imgAveria">Fotos Averia</Form.Label>
               <Form.Control
+                src={imgAveria} alt="averia" width={50}
                 type="text-area"
                 name="imgAveria"
                 value={imgAveria}
