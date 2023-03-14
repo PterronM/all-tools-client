@@ -20,8 +20,8 @@ const updateAveriaId = (idAveria, updateAveria)=>{
     return service.patch(`/averias/${idAveria}/update`, updateAveria)
 }
 
-const updateAveriaStatus = (idAveria, updateStatusFinal)=>{
-    return service.patch(`/averias/${idAveria}/updateStatus`, updateStatusFinal)
+const updateAveriaStatus = (idAveria, updateStatus)=>{
+    return service.patch(`/averias/${idAveria}/updateStatus`, updateStatus)
 }
 
 const deleteAveriaId = (idAveria)=>{

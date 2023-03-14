@@ -6,23 +6,26 @@ import ListRepuestosAdm from "./ListRepuestosAdm";
 function PerfAdm() {
   return (
     <div className="d-flex flex-column">
-      <div className="mt-3 d-flex justify-content-evenly">
-        <div className="solicitudes gap-2">
+      <div className="mt-3 d-flex justify-content-around flex-wrap">
+        <div className="solicitudes">
           <ListRepuestosAdm />
         </div>
 
-        <div className="averias  ">
+        <div className="averias">
           <ListAveriasAdm />
         </div>
       </div>
 
+      <div className="d-flex justify-content-center">
       <Link
-        className="d-flex justify-content-center mt-5"
+        className="btnPerfTec d-flex justify-content-center mt-5"
         to="/create-averia"
         element={<CreateAveria />}
       >
-        <p className="textBtn">Averia</p>
+        <p>Crear Averia</p>
       </Link>
+      </div>
+   
     </div>
   );
 }

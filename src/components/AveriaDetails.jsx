@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Spinner from 'react-bootstrap/Spinner';
 import { useEffect } from "react";
 import { Button, Form, FormGroup } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,18 +9,21 @@ import {
   updateAveriaStatus,
   deleteAveriaId,
 } from "../services/averias.services";
+import { uploadImageService } from "../services/upload.services";
 
 function AveriaDetails() {
   const redirect = useNavigate();
 
   const params = useParams();
-  //   console.log(params);
-  const [finalizar, setFinalizar] = useState("finalizar");
+
+  const [imgAveria, setimgAveria] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const [finalizarStatus, setFinalizarStatus] = useState("Finalizada");
   const [isFeching, setIsFeching] = useState(true);
   const [maquina, setMaquina] = useState("");
   const [modelo, setModelo] = useState("");
   const [nSerie, setnSerie] = useState("");
-  const [imgAveria, setImgAveria] = useState("");
   const [descriptionAveria, setdescriptionAveria] = useState("");
 
   useEffect(() => {
@@ -35,7 +39,7 @@ function AveriaDetails() {
       setMaquina(response.data.maquina);
       setModelo(response.data.modelo);
       setnSerie(response.data.nSerie);
-      setImgAveria(response.data.imgAveria);
+      setimgAveria(response.data.imgAveria);
       setdescriptionAveria(response.data.descriptionAveria);
     } catch (error) {
       console.log(error);
@@ -45,7 +49,22 @@ function AveriaDetails() {
   const handleMaquinaChange = (e) => setMaquina(e.target.value);
   const handleModeloChange = (e) => setModelo(e.target.value);
   const handleNserieChange = (e) => setnSerie(e.target.value);
-  const handleImgAveriaChange = (e) => setImgAveria(e.target.value);
+  const handleFileUpload = async (event) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+    if (!event.target.files[0]) {
+      return;
+    }
+    setIsUploading(true);
+    const uploadData = new FormData();
+    uploadData.append("imgAveria", event.target.files[0]);
+    try {
+      const response = await uploadImageService(uploadData);
+      setimgAveria(response.data.imgAveria);
+      setIsUploading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handledescriptionAveriaChange = (e) =>
     setdescriptionAveria(e.target.value);
 
@@ -67,15 +86,7 @@ function AveriaDetails() {
       console.log(error);
     }
   };
-  const handleFinalizarAveriaService = async () => {
-    const updateStatusFinal = { finalizar };
-    try {
-        redirect("/home");
-      await updateAveriaStatus(params.idAveria, updateStatusFinal);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const handleDeleteAveriaService = async () => {
     try {
       redirect("/home");
@@ -85,10 +96,19 @@ function AveriaDetails() {
     }
   };
 
+  const handleStatusAveriaService = async () => {
+    const updateStatus = { finalizada: finalizarStatus };
+    // console.log(updateStatus);
+    try {
+      redirect("/home");
+      await updateAveriaStatus(params.idAveria, updateStatus);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
- 
-
       {isFeching === true ? (
         <h3>Buscando ....</h3>
       ) : (
@@ -127,12 +147,18 @@ function AveriaDetails() {
             <FormGroup>
               <Form.Label htmlform="imgAveria">Fotos Averia</Form.Label>
               <Form.Control
-                src={imgAveria} alt="averia" width={50}
-                type="text-area"
+                type="file"
                 name="imgAveria"
-                value={imgAveria}
-                onChange={handleImgAveriaChange}
+                onChange={handleFileUpload}
+                disabled={isUploading}
               />
+              {!imgAveria ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
+              {isUploading ? <Spinner animation="border" role="status" />: null}
+              {imgAveria ? (
+                <div>
+                  <img src={imgAveria} alt="img" width={100} />
+                </div>
+              ) : null}
             </FormGroup>
             <br />
             <FormGroup>
@@ -163,7 +189,7 @@ function AveriaDetails() {
               Eliminar
             </Button>
             <Button
-              onClick={handleFinalizarAveriaService}
+              onClick={handleStatusAveriaService}
               type="submit"
               className="btn btn-success mb-3"
             >

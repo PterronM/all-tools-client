@@ -38,7 +38,7 @@ function ListRepuestos() {
         return(
           
           <div className="boxDetails d-flex justify-content-between align-items-center w-75 p-1" key={eachRepuesto._id}>
-            <Link className="text-decoration-none text-black" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}><span>-{new Date(eachRepuesto.createdAt).toLocaleDateString()} </span>
+            <Link className="text-decoration-none text-black" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}><span>{new Date(eachRepuesto.createdAt).toLocaleDateString()} </span>
             <span> -- {eachRepuesto.descriptionRepuesto}</span></Link>
             <div className="estado">
             {eachRepuesto.estadoRepuesto === "Pendiente"  && <p>⏱️</p>}  
