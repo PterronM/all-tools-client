@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { Form, FormGroup } from "react-bootstrap"
+import { Form, FormGroup, Spinner } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
 import { createOneRepuesto } from "../services/repuestos.services";
-
+import { uploadImageService } from "../services/upload.services";
 
 function Repuesto() {
   const redirection = useNavigate()
 
+  const [imageUrl, setImageUrl] = useState(null); 
+const [isUploading, setIsUploading] = useState(false);
+
   const [maquina, setMaquina] = useState("");
   const [modelo, setModelo] = useState("");
   const [nSerie, setnSerie] = useState("");
-  const [imgRepuesto, setImgRepuesto] = useState("");
   const [descriptionRepuesto, setDescriptionRepuesto] = useState("");
   const [nSerieRepuesto, setnSerieRepuesto] = useState("");
 
@@ -23,9 +25,23 @@ function Repuesto() {
   const handleNserieChange = (event)=>{
     setnSerie(event.target.value)
   }
-  const handleImgRepuestoChange = (event)=>{
-    setImgRepuesto(event.target.value)
-  }
+  const handleFileUpload = async (event) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+    if (!event.target.files[0]) {
+      return;
+    }
+    setIsUploading(true);
+    const uploadData = new FormData();
+    // uploadData.append("image" , event.target.files[0][1][2]) -- Para subir varias fotos
+    uploadData.append("image", event.target.files[0]);
+    try {
+      const response = await uploadImageService(uploadData);
+      setImageUrl(response.data.imageUrl);
+      setIsUploading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handledescripcionRepuestoChange = (event)=>{
     setDescriptionRepuesto(event.target.value)
   }
@@ -41,7 +57,7 @@ function Repuesto() {
       maquina,
       modelo,
       nSerie,
-      imgRepuesto,
+      imgRepuesto:imageUrl,
       descriptionRepuesto,
       nSerieRepuesto
     }
@@ -78,8 +94,14 @@ function Repuesto() {
       </FormGroup>
       <br />
       <FormGroup>
-        <Form.Label htmlform="imgRepuesto">Fotos Repuesto</Form.Label>
-        <Form.Control type="text-area" name="imgRepuesto" value={imgRepuesto} onChange={handleImgRepuestoChange}/>
+        <Form.Label htmlform="image">Fotos Repuesto</Form.Label>
+        <Form.Control type="file" name="image" onChange={handleFileUpload} disabled={isUploading}/>
+        {isUploading ? <Spinner animation="border" role="status" /> : null}
+            {imageUrl ? (
+              <div>
+                <img src={imageUrl} alt="img" width={100} />
+              </div>
+            ) : null}
       </FormGroup>
       <br/>
       <FormGroup>

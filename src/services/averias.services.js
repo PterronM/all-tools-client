@@ -12,6 +12,10 @@ const createOneAveria = (newAveria)=>{
     return service.post("/averias/create-averia" , newAveria)
 }
 
+const createAveriaAdm =(newAveria)=>{
+    return service.post("/averias/create-averia-adm", newAveria)
+}
+
 const averiaDetailsService = (idAveria)=>{
     return service.get(`/averias/${idAveria}`)
 }
@@ -33,6 +37,7 @@ export {
     getAllAveriasService,
     getAveriasIdService,
     createOneAveria,
+    createAveriaAdm,
     averiaDetailsService,
     updateAveriaId,
     updateAveriaStatus,

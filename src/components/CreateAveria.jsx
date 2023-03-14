@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Form, FormGroup, Spinner } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
-  averiaDetailsService,
+
+  createAveriaAdm,
   createOneAveria,
 } from "../services/averias.services";
 import { uploadImageService } from "../services/upload.services";
@@ -15,7 +16,7 @@ function Averia() {
   // const params = useParams();
   const { loggedUser } = useContext(AuthContext);
 
-  const [imgAveria, setimgAveria] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null); 
   const [isUploading, setIsUploading] = useState(false);
 
   const [idUser, setIdUser] = useState("");
@@ -61,10 +62,10 @@ function Averia() {
     setIsUploading(true);
     const uploadData = new FormData();
     // uploadData.append("imgAveria" , event.target.files[0][1][2]) -- Para subir varias fotos
-    uploadData.append("imgAveria", event.target.files[0]);
+    uploadData.append("image", event.target.files[0]);
     try {
       const response = await uploadImageService(uploadData);
-      setimgAveria(response.data.imgAveria);
+      setImageUrl(response.data.imageUrl);
       setIsUploading(false);
     } catch (error) {
       console.log(error);
@@ -73,26 +74,6 @@ function Averia() {
   const handledescriptionAveriaChange = (event) => {
     setdescriptionAveria(event.target.value);
   };
-  // const handleSubmitAdm = async (event) => {
-  //   event.preventDefault();
-
-  //   const newAveria = {
-  //     idUser,
-  //     maquina,
-  //     modelo,
-  //     nSerie,
-  //     imgAveria,
-  //     descriptionAveria,
-  //     tecnico
-  //   };
-
-  //   try {
-  //     await createOneAveria(newAveria);
-  //     redirection("/home");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   const handleSubmitTec = async (event) => {
     event.preventDefault();
 
@@ -101,9 +82,8 @@ function Averia() {
       maquina,
       modelo,
       nSerie,
-      imgAveria,
+      imgAveria:imageUrl,
       descriptionAveria,
-
     };
 
     try {
@@ -113,6 +93,26 @@ function Averia() {
       console.log(error);
     }
   };
+  const handleSubmitAdm = async (event) => {
+    event.preventDefault();
+
+    const newAveria = {
+      idUser:tecnico,
+      maquina,
+      modelo,
+      nSerie,
+      imgAveria:imageUrl,
+      descriptionAveria,
+    };
+
+    try {
+      await createAveriaAdm(newAveria)
+      redirection("/home");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+ 
 
   if (loggedUser.role === "Tecnico") {
     return (
@@ -149,17 +149,17 @@ function Averia() {
           </FormGroup>
           <br />
           <FormGroup>
-            <Form.Label htmlform="imgAveria">Fotos Averia</Form.Label>
+            <Form.Label htmlform="image">Fotos Averia</Form.Label>
             <Form.Control
               type="file"
-              name="imgAveria"
+              name="image"
               onChange={handleFileUpload}
               disabled={isUploading}
             />
             {isUploading ? <Spinner animation="border" role="status" /> : null}
-            {imgAveria ? (
+            {imageUrl ? (
               <div>
-                <img src={imgAveria} alt="img" width={100} />
+                <img src={imageUrl} alt="img" width={100} />
               </div>
             ) : null}
           </FormGroup>
@@ -199,15 +199,18 @@ function Averia() {
               onChange={handleTecnicoChange}
             >
               {idUser === "" ? (
-                <option>...Buscando</option>
+                <Spinner animation="border" role="status"/>
               ) : (
-                idUser.map((eachUser) => {
+                <>
+                <option>Seleccion</option>
+                {idUser.map((eachUser) => {
                   return (
                     <option key={eachUser._id} value={eachUser._id}>
                       {eachUser.nombre}
                     </option>
                   );
-                })
+                })}
+                </>
               )}
             </Form.Select>
             <Form.Label htmlform="Maquina">Maquina</Form.Label>
@@ -240,17 +243,17 @@ function Averia() {
           </FormGroup>
           <br />
           <FormGroup>
-            <Form.Label htmlform="imgAveria">Fotos Averia</Form.Label>
+            <Form.Label htmlform="image">Fotos Averia</Form.Label>
             <Form.Control
               type="file"
-              name="imgAveria"
+              name="image"
               onChange={handleFileUpload}
               disabled={isUploading}
             />
             {isUploading ? <Spinner animation="border" role="status" /> : null}
-            {imgAveria ? (
+            {imageUrl ? (
               <div>
-                <img src={imgAveria} alt="img" width={100} />
+                <img src={imageUrl} alt="img" width={100} />
               </div>
             ) : null}
           </FormGroup>
@@ -269,7 +272,7 @@ function Averia() {
           <br />
           <br />
           <Button
-            onClick={handleSubmitTec}
+            onClick={handleSubmitAdm}
             type="submit"
             className="btn btn-success mb-3 mt-3"
           >

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect, useContext } from "react";
-import { Button, Form, FormGroup } from "react-bootstrap";
+import { Button, Form, FormGroup, Spinner } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   updateRepuestoId,
@@ -9,6 +9,7 @@ import {
   updateRepuestoStatus,
 } from "../services/repuestos.services";
 import { AuthContext } from "../context/auth.context";
+import { uploadImageService } from "../services/upload.services";
 
 function RepuestoDetails() {
   const { loggedUser } = useContext(AuthContext);
@@ -17,13 +18,15 @@ function RepuestoDetails() {
 
   const params = useParams();
 
+  const [imageUrl, setImageUrl] = useState(null); 
+const [isUploading, setIsUploading] = useState(false);
+
   const [aceptarStatus, setAceptarStatus] = useState("Aceptada");
   const [rechazarStatus, setRechazarStatus] = useState("Rechazada");
   const [isFeching, setIsFeching] = useState(true);
   const [maquina, setMaquina] = useState("");
   const [modelo, setModelo] = useState("");
   const [nSerie, setnSerie] = useState("");
-  const [imgRepuesto, setImgRepuesto] = useState("");
   const [descriptionRepuesto, setDescriptionRepuesto] = useState("");
   const [nSerieRepuesto, setnSerieRepuesto] = useState();
 
@@ -40,7 +43,7 @@ function RepuestoDetails() {
       setMaquina(response.data.maquina);
       setModelo(response.data.modelo);
       setnSerie(response.data.nSerie);
-      setImgRepuesto(response.data.imgRepuesto);
+      setImageUrl(response.data.imgRepuesto);
       setDescriptionRepuesto(response.data.descriptionRepuesto);
       setnSerieRepuesto(response.data.nSerieRepuesto);
     } catch (error) {
@@ -51,7 +54,22 @@ function RepuestoDetails() {
   const handleMaquinaChange = (e) => setMaquina(e.target.value);
   const handleModeloChange = (e) => setModelo(e.target.value);
   const handleNserieChange = (e) => setnSerie(e.target.value);
-  const handleImgRepuestoChange = (e) => setImgRepuesto(e.target.value);
+  const handleFileUpload = async (event) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+    if (!event.target.files[0]) {
+      return;
+    }
+    setIsUploading(true);
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+    try {
+      const response = await uploadImageService(uploadData);
+      setImageUrl(response.data.imageUrl);
+      setIsUploading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handledescriptionRepuestoChange = (e) =>
     setDescriptionRepuesto(e.target.value);
   const handlenSerieRepuestoChange = (e) => setnSerieRepuesto(e.target.value);
@@ -63,7 +81,7 @@ function RepuestoDetails() {
       maquina,
       modelo,
       nSerie,
-      imgRepuesto,
+      imgRepuesto:imageUrl,
       descriptionRepuesto,
       nSerieRepuesto,
     };
@@ -142,13 +160,20 @@ function RepuestoDetails() {
             </FormGroup>
             <br />
             <FormGroup>
-              <Form.Label htmlform="imgRepuesto">Fotos Repuesto</Form.Label>
+              <Form.Label htmlform="image">Fotos Repuesto</Form.Label>
               <Form.Control
-                type="text"
-                name="imgRepuesto"
-                value={imgRepuesto}
-                onChange={handleImgRepuestoChange}
+                type="file"
+                name="image"
+                onChange={handleFileUpload}
+                disabled={isUploading}
               />
+              {!imageUrl ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
+              {isUploading ? <Spinner animation="border" role="status" />: null}
+              {imageUrl ? (
+                <div className="imgDetails">
+                  <img src={imageUrl} alt="img" width={100} />
+                </div>
+              ) : null}
             </FormGroup>
             <br />
             <FormGroup>
@@ -230,13 +255,20 @@ function RepuestoDetails() {
             </FormGroup>
             <br />
             <FormGroup>
-              <Form.Label htmlform="imgRepuesto">Fotos Repuesto</Form.Label>
+              <Form.Label htmlform="image">Fotos Repuesto</Form.Label>
               <Form.Control
-                type="text"
-                name="imgRepuesto"
-                value={imgRepuesto}
-                onChange={handleImgRepuestoChange}
+                type="file"
+                name="image"
+                onChange={handleFileUpload}
+                disabled={isUploading}
               />
+              {!imageUrl ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
+              {isUploading ? <Spinner animation="border" role="status" />: null}
+              {imageUrl ? (
+                <div className="imgDetails">
+                  <img src={imageUrl} alt="img" width={100} />
+                </div>
+              ) : null}
             </FormGroup>
             <br />
             <FormGroup>
@@ -259,7 +291,7 @@ function RepuestoDetails() {
                 type="text"
                 name="nSerieRepuesto"
                 value={nSerieRepuesto}
-                onChange={handleImgRepuestoChange}
+                onChange={handlenSerieRepuestoChange}
               />
             </FormGroup>
           </Form>

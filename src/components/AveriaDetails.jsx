@@ -16,8 +16,8 @@ function AveriaDetails() {
 
   const params = useParams();
 
-  const [imgAveria, setimgAveria] = useState(null);
-  const [isUploading, setIsUploading] = useState(false);
+const [imageUrl, setImageUrl] = useState(null); 
+const [isUploading, setIsUploading] = useState(false);
 
   const [finalizarStatus, setFinalizarStatus] = useState("Finalizada");
   const [isFeching, setIsFeching] = useState(true);
@@ -34,12 +34,11 @@ function AveriaDetails() {
     try {
       const response = await averiaDetailsService(params.idAveria);
       //   console.log(response);
-      //   setSingleAveria(response.data);
       setIsFeching(false);
       setMaquina(response.data.maquina);
       setModelo(response.data.modelo);
       setnSerie(response.data.nSerie);
-      setimgAveria(response.data.imgAveria);
+      setImageUrl(response.data.imgAveria);
       setdescriptionAveria(response.data.descriptionAveria);
     } catch (error) {
       console.log(error);
@@ -56,10 +55,10 @@ function AveriaDetails() {
     }
     setIsUploading(true);
     const uploadData = new FormData();
-    uploadData.append("imgAveria", event.target.files[0]);
+    uploadData.append("image", event.target.files[0]);
     try {
       const response = await uploadImageService(uploadData);
-      setimgAveria(response.data.imgAveria);
+      setImageUrl(response.data.imageUrl);
       setIsUploading(false);
     } catch (error) {
       console.log(error);
@@ -75,7 +74,7 @@ function AveriaDetails() {
       maquina,
       modelo,
       nSerie,
-      imgAveria,
+      imgAveria:imageUrl,
       descriptionAveria,
     };
 
@@ -110,10 +109,11 @@ function AveriaDetails() {
   return (
     <div>
       {isFeching === true ? (
-        <h3>Buscando ....</h3>
+       <Spinner animation="border" role="status"/>
+        
       ) : (
         <div className="details d-flex justify-content-center">
-          <Form className="d-flex flex-column w-50">
+          <Form className="d-flex flex-column w-75">
             <FormGroup className="justify-content-center">
               <Form.Label htmlform="Maquina">Maquina</Form.Label>
               <Form.Control
@@ -145,18 +145,18 @@ function AveriaDetails() {
             </FormGroup>
             <br />
             <FormGroup>
-              <Form.Label htmlform="imgAveria">Fotos Averia</Form.Label>
+              <Form.Label htmlform="image">Fotos Averia</Form.Label>
               <Form.Control
                 type="file"
-                name="imgAveria"
+                name="image"
                 onChange={handleFileUpload}
                 disabled={isUploading}
               />
-              {!imgAveria ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
+              {!imageUrl ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
               {isUploading ? <Spinner animation="border" role="status" />: null}
-              {imgAveria ? (
-                <div>
-                  <img src={imgAveria} alt="img" width={100} />
+              {imageUrl ? (
+                <div className="imgDetails">
+                  <img src={imageUrl} alt="img" width={100} />
                 </div>
               ) : null}
             </FormGroup>
