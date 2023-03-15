@@ -10,6 +10,7 @@ import {
 } from "../services/repuestos.services";
 import { AuthContext } from "../context/auth.context";
 import { uploadImageService } from "../services/upload.services";
+import ModalRepuesto from "./Modals/ModalRepuesto";
 
 function RepuestoDetails() {
   const { loggedUser } = useContext(AuthContext);
@@ -18,8 +19,11 @@ function RepuestoDetails() {
 
   const params = useParams();
 
-  const [imageUrl, setImageUrl] = useState(null); 
-const [isUploading, setIsUploading] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(!show);
+
+  const [imageUrl, setImageUrl] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   const [aceptarStatus, setAceptarStatus] = useState("Aceptada");
   const [rechazarStatus, setRechazarStatus] = useState("Rechazada");
@@ -81,7 +85,7 @@ const [isUploading, setIsUploading] = useState(false);
       maquina,
       modelo,
       nSerie,
-      imgRepuesto:imageUrl,
+      imgRepuesto: imageUrl,
       descriptionRepuesto,
       nSerieRepuesto,
     };
@@ -93,7 +97,7 @@ const [isUploading, setIsUploading] = useState(false);
       console.log(error);
     }
   };
-  
+
   const handleStatusRepuestoService = async () => {
     const updateStatus = { aceptada: aceptarStatus };
     try {
@@ -104,16 +108,16 @@ const [isUploading, setIsUploading] = useState(false);
     }
   };
 
-  const handleRechazarRepuestoService = async () =>{
-  const updateStatus = {rechazada:rechazarStatus }
+  const handleRechazarRepuestoService = async () => {
+    const updateStatus = { rechazada: rechazarStatus };
 
     try {
-      redirect("/home")
-      await updateRepuestoStatus(params.idRepuesto , updateStatus)
+      redirect("/home");
+      await updateRepuestoStatus(params.idRepuesto, updateStatus);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   const handleDeleteRepuestoService = async () => {
     try {
       redirect("/home");
@@ -123,216 +127,252 @@ const [isUploading, setIsUploading] = useState(false);
     }
   };
 
-
   if (loggedUser.role === "Tecnico") {
     return (
-      <div>
-        <div className="details d-flex justify-content-center">
-          <Form className="d-flex flex-column w-75">
-            <FormGroup className="justify-content-center">
-              <Form.Label htmlform="Maquina">Maquina</Form.Label>
-              <Form.Control
-                type="text"
-                name="Maquina"
-                value={maquina}
-                onChange={handleMaquinaChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="modelo">Modelo</Form.Label>
-              <Form.Control
-                type="text"
-                name="modelo"
-                value={modelo}
-                onChange={handleModeloChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="nSerie">Nª de Serie</Form.Label>
-              <Form.Control
-                type="text"
-                name="nSerie"
-                value={nSerie}
-                onChange={handleNserieChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="image">Fotos Repuesto</Form.Label>
-              <Form.Control
-                type="file"
-                name="image"
-                onChange={handleFileUpload}
-                disabled={isUploading}
-              />
-              {!imageUrl ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
-              {isUploading ? <Spinner animation="border" role="status" />: null}
-              {imageUrl ? (
-                <div className="imgDetails">
-                  <img src={imageUrl} alt="img" width={100} />
-                </div>
-              ) : null}
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="descriptionAveria">Descripcion</Form.Label>
-              <textarea
-                className="form-control"
-                rows={2}
-                type="text"
-                name="descriptionAveria"
-                value={descriptionRepuesto}
-                onChange={handledescriptionRepuestoChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="nSerie">Nª de Serie Repuestos</Form.Label>
-              <Form.Control
-                type="text"
-                name="nSerie"
-                value={nSerie}
-                onChange={handleNserieChange}
-              />
-            </FormGroup>
-            <br />
-            <Button
-              onClick={handleUpdateRepuestoService}
-              type="submit"
-              className="btn btn-warning mb-3"
-            >
-              Actualizar
-            </Button>
-            <Button
-              onClick={handleDeleteRepuestoService}
-              type="submit"
-              className="btn btn-danger mb-3"
-            >
-              Eliminar
-            </Button>
-          </Form>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="d-flex flex-column justify-content-center">
-        <div className="mt-3 d-flex flex-column justify-content-center align-items-center">
-          <Form className="d-flex flex-column">
-            <FormGroup className="justify-content-center">
-              <Form.Label htmlform="Maquina">Maquina</Form.Label>
-              <Form.Control
-                type="text"
-                name="Maquina"
-                value={maquina}
-                onChange={handleMaquinaChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="modelo">Modelo</Form.Label>
-              <Form.Control
-                type="text"
-                name="modelo"
-                value={modelo}
-                onChange={handleModeloChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="nSerie">Nª de Serie</Form.Label>
-              <Form.Control
-                type="text"
-                name="nSerie"
-                value={nSerie}
-                onChange={handleNserieChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="image">Fotos Repuesto</Form.Label>
-              <Form.Control
-                type="file"
-                name="image"
-                onChange={handleFileUpload}
-                disabled={isUploading}
-              />
-              {!imageUrl ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
-              {isUploading ? <Spinner animation="border" role="status" />: null}
-              {imageUrl ? (
-                <div className="imgDetails">
-                  <img src={imageUrl} alt="img" width={100} />
-                </div>
-              ) : null}
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="descriptionAveria">Descripcion</Form.Label>
-              <textarea
-                className="form-control"
-                rows={2}
-                type="text"
-                name="descriptionAveria"
-                value={descriptionRepuesto}
-                onChange={handledescriptionRepuestoChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="nSerieRepuesto">
-                Nº de Serie del Repuesto
-              </Form.Label>
-              <Form.Control
-                type="text"
-                name="nSerieRepuesto"
-                value={nSerieRepuesto}
-                onChange={handlenSerieRepuestoChange}
-              />
-            </FormGroup>
-          </Form>
-          <br />
-          <div className="d-flex w-100 justify-content-center mt-3">
-            <Form className="d-flex gap-3">
-            <div className="d-flex flex-column">
-            <Button
+      <>
+        <div>
+          <div className="details d-flex justify-content-center">
+            <Form className="d-flex flex-column w-75">
+              <FormGroup className="justify-content-center">
+                <Form.Label htmlform="Maquina">Maquina</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="Maquina"
+                  value={maquina}
+                  onChange={handleMaquinaChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="modelo">Modelo</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="modelo"
+                  value={modelo}
+                  onChange={handleModeloChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="nSerie">Nª de Serie</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="nSerie"
+                  value={nSerie}
+                  onChange={handleNserieChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="image">Fotos Repuesto</Form.Label>
+                <Form.Control
+                  type="file"
+                  name="image"
+                  onChange={handleFileUpload}
+                  disabled={isUploading}
+                />
+                {!imageUrl ? (
+                  <img
+                   className="imgCruz"
+                    src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png"
+                    alt="cruz"
+                    width={50}
+                  ></img>
+                ) : null}
+                {isUploading ? (
+                  <Spinner animation="border" role="status" />
+                ) : null}
+                {imageUrl ? (
+                  <div>
+                    <img
+                      className="imgDetails"
+                      src={imageUrl}
+                      alt="img"
+                      width={100}
+                    />
+                  </div>
+                ) : null}
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="descriptionAveria">
+                  Descripcion
+                </Form.Label>
+                <textarea
+                  className="form-control"
+                  rows={2}
+                  type="text"
+                  name="descriptionAveria"
+                  value={descriptionRepuesto}
+                  onChange={handledescriptionRepuestoChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="nSerie">Nª de Serie Repuestos</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="nSerie"
+                  value={nSerie}
+                  onChange={handleNserieChange}
+                />
+              </FormGroup>
+              <br />
+              <Button
                 onClick={handleUpdateRepuestoService}
                 type="submit"
                 className="btn btn-warning mb-3"
               >
                 Actualizar
               </Button>
-              <Button
-                onClick={handleStatusRepuestoService}
-                type="submit"
-                className="btn btn-success mb-3"
-              >
-                Aceptar
+              <Button onClick={handleClose} className="btn btn-danger mb-3">
+                Eliminar
               </Button>
-
-            </div>
-              
-              <div className="d-flex flex-column">
-                <Button
-                  onClick={handleRechazarRepuestoService}
-                  type="submit"
-                  className="btn btn-primary mb-3"
-                >
-                  Rechazar
-                </Button>
-                <Button
-                  onClick={handleDeleteRepuestoService}
-                  type="submit"
-                  className="btn btn-danger mb-3"
-                >
-                  Eliminar
-                </Button>
-              </div>
             </Form>
           </div>
         </div>
-      </div>
+        <ModalRepuesto
+          show={show}
+          handleClose={handleClose}
+          eliminar={handleDeleteRepuestoService}
+        />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="d-flex flex-column justify-content-center">
+          <div className="mt-3 d-flex flex-column justify-content-center align-items-center">
+            <Form className="d-flex flex-column">
+              <FormGroup className="justify-content-center">
+                <Form.Label htmlform="Maquina">Maquina</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="Maquina"
+                  value={maquina}
+                  onChange={handleMaquinaChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="modelo">Modelo</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="modelo"
+                  value={modelo}
+                  onChange={handleModeloChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="nSerie">Nª de Serie</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="nSerie"
+                  value={nSerie}
+                  onChange={handleNserieChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="image">Fotos Repuesto</Form.Label>
+                <Form.Control
+                  type="file"
+                  name="image"
+                  onChange={handleFileUpload}
+                  disabled={isUploading}
+                />
+                {!imageUrl ? (
+                  <img
+                    className="imgCruz"
+                    src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png"
+                    alt="cruz"
+                    width={50}
+                  ></img>
+                ) : null}
+                {isUploading ? (
+                  <Spinner animation="border" role="status" />
+                ) : null}
+                {imageUrl ? (
+                  <div>
+                    <img
+                      className="imgDetails"
+                      src={imageUrl}
+                      alt="img"
+                      width={100}
+                    />
+                  </div>
+                ) : null}
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="descriptionAveria">
+                  Descripcion
+                </Form.Label>
+                <textarea
+                  className="form-control"
+                  rows={2}
+                  type="text"
+                  name="descriptionAveria"
+                  value={descriptionRepuesto}
+                  onChange={handledescriptionRepuestoChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="nSerieRepuesto">
+                  Nº de Serie del Repuesto
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="nSerieRepuesto"
+                  value={nSerieRepuesto}
+                  onChange={handlenSerieRepuestoChange}
+                />
+              </FormGroup>
+            </Form>
+            <br />
+            <div className="d-flex w-100 justify-content-center mt-3">
+              <Form className="d-flex gap-3">
+                <div className="d-flex flex-column">
+                  <Button
+                    onClick={handleUpdateRepuestoService}
+                    type="submit"
+                    className="btn btn-warning mb-3"
+                  >
+                    Actualizar
+                  </Button>
+                  <Button
+                    onClick={handleStatusRepuestoService}
+                    type="submit"
+                    className="btn btn-success mb-3"
+                  >
+                    Aceptar
+                  </Button>
+                </div>
+
+                <div className="d-flex flex-column">
+                  <Button
+                    onClick={handleRechazarRepuestoService}
+                    type="submit"
+                    className="btn btn-primary mb-3"
+                  >
+                    Rechazar
+                  </Button>
+                  <Button onClick={handleClose} className="btn btn-danger mb-3">
+                    Eliminar
+                  </Button>
+                </div>
+              </Form>
+            </div>
+          </div>
+        </div>
+        <ModalRepuesto
+          show={show}
+          handleClose={handleClose}
+          eliminar={handleDeleteRepuestoService}
+        />
+      </>
     );
   }
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 import { useEffect } from "react";
 import { Button, Form, FormGroup } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,14 +10,23 @@ import {
   deleteAveriaId,
 } from "../services/averias.services";
 import { uploadImageService } from "../services/upload.services";
+import ModalAveria from "./Modals/ModalAveria";
+
 
 function AveriaDetails() {
+
   const redirect = useNavigate();
 
   const params = useParams();
 
-const [imageUrl, setImageUrl] = useState(null); 
-const [isUploading, setIsUploading] = useState(false);
+ 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(!show);
+
+
+
+  const [imageUrl, setImageUrl] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   const [finalizarStatus, setFinalizarStatus] = useState("Finalizada");
   const [isFeching, setIsFeching] = useState(true);
@@ -44,6 +53,8 @@ const [isUploading, setIsUploading] = useState(false);
       console.log(error);
     }
   };
+
+
 
   const handleMaquinaChange = (e) => setMaquina(e.target.value);
   const handleModeloChange = (e) => setModelo(e.target.value);
@@ -74,7 +85,7 @@ const [isUploading, setIsUploading] = useState(false);
       maquina,
       modelo,
       nSerie,
-      imgAveria:imageUrl,
+      imgAveria: imageUrl,
       descriptionAveria,
     };
 
@@ -88,6 +99,7 @@ const [isUploading, setIsUploading] = useState(false);
 
   const handleDeleteAveriaService = async () => {
     try {
+      handleClose()
       redirect("/home");
       await deleteAveriaId(params.idAveria);
     } catch (error) {
@@ -107,10 +119,10 @@ const [isUploading, setIsUploading] = useState(false);
   };
 
   return (
+    <>
     <div>
       {isFeching === true ? (
-       <Spinner animation="border" role="status"/>
-        
+        <Spinner animation="border" role="status" />
       ) : (
         <div className="details d-flex justify-content-center">
           <Form className="d-flex flex-column w-75">
@@ -152,11 +164,25 @@ const [isUploading, setIsUploading] = useState(false);
                 onChange={handleFileUpload}
                 disabled={isUploading}
               />
-              {!imageUrl ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
-              {isUploading ? <Spinner animation="border" role="status" />: null}
+              {!imageUrl ? (
+                <img
+                  className="imgCruz"
+                  src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png"
+                  alt="cruz"
+                  width={50}
+                ></img>
+              ) : null}
+              {isUploading ? (
+                <Spinner animation="border" role="status" />
+              ) : null}
               {imageUrl ? (
                 <div>
-                  <img className="imgDetails" src={imageUrl} alt="img" width={100} />
+                  <img
+                    className="imgDetails"
+                    src={imageUrl}
+                    alt="img"
+                    width={100}
+                  />
                 </div>
               ) : null}
             </FormGroup>
@@ -181,9 +207,9 @@ const [isUploading, setIsUploading] = useState(false);
             >
               Actualizar
             </Button>
+
             <Button
-              onClick={handleDeleteAveriaService}
-              type="submit"
+              onClick={handleClose}
               className="btn btn-danger mb-3"
             >
               Eliminar
@@ -199,6 +225,8 @@ const [isUploading, setIsUploading] = useState(false);
         </div>
       )}
     </div>
+    <ModalAveria show={show} handleClose={handleClose} eliminar={handleDeleteAveriaService}/>
+    </>
   );
 }
 export default AveriaDetails;

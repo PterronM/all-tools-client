@@ -31,7 +31,7 @@ function ListAveriasAdm() {
         return(
           
           <div className="boxDetails d-flex justify-content-between bg-white" key={eachAveria._id}>
-            <Link className="text-decoration-none text-black" to = {`/averia/${eachAveria._id}/details`} value={eachAveria._id}><span>{eachAveria.maquina}</span><br /><span>{new Date(eachAveria.createdAt).toLocaleDateString()} </span>
+            <Link className="contenido-box text-decoration-none text-black" to = {`/averia/${eachAveria._id}/details`} value={eachAveria._id}><span>{eachAveria.maquina}</span><br /><span>{new Date(eachAveria.createdAt).toLocaleDateString()} </span>
             </Link>
             <div className="estado">
             {eachAveria.estadoAveria === "Pendiente"  && <p>⏱️</p>}  

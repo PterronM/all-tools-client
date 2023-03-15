@@ -28,7 +28,7 @@ function ListRepuestosAdm() {
         return(
           
           <div className="boxDetails d-flex justify-content-between bg-white" key={eachRepuesto._id}>
-            <Link className="text-decoration-none text-black" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}><span>{eachRepuesto.descriptionRepuesto}</span><br /><span>{eachRepuesto.maquina}</span><br /><span>{new Date(eachRepuesto.createdAt).toLocaleDateString()} </span>
+            <Link className="text-decoration-none text-black contenido-box" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}><span>{eachRepuesto.descriptionRepuesto}</span><br /><span>{eachRepuesto.maquina}</span><br /><span>{new Date(eachRepuesto.createdAt).toLocaleDateString()} </span>
             </Link>
             <div className="estado">
             {eachRepuesto.estadoRepuesto === "Pendiente"  && <p>⏱️</p>}  

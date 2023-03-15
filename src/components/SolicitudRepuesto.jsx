@@ -99,7 +99,9 @@ const [isUploading, setIsUploading] = useState(false);
         {isUploading ? <Spinner animation="border" role="status" /> : null}
             {imageUrl ? (
               <div>
-                <img src={imageUrl} alt="img" width={100} />
+                <img 
+                className="imgDetails"
+                src={imageUrl} alt="img" width={100} />
               </div>
             ) : null}
       </FormGroup>
