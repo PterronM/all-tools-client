@@ -151,3 +151,12 @@
   color: #f8931f;
 
 }
+
+
+ @media (min-width: 650px) {
+
+.home{
+
+align-items: center;
+}
+} 
