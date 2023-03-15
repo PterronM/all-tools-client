@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import {Link, useNavigate } from "react-router-dom";
 import { getRepuestosIdService} from "../services/repuestos.services";
 
@@ -28,7 +29,11 @@ function ListRepuestos() {
     };
   
     if (allRepuestos === null) {
-      return <h3>Buscando</h3>;
+      return(
+        <div className="Spinner">
+          <Spinner className="spinner-grow" role="status"/>;
+        </div>
+      )
     }
   
     return (

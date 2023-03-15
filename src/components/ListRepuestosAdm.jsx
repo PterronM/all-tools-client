@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllRepuestosService } from "../services/repuestos.services";
 import { Link } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 function ListRepuestosAdm() {
   const [allRepuestos, setAllRepuestos] = useState(null);
@@ -18,7 +19,11 @@ function ListRepuestosAdm() {
   };
 
   if (allRepuestos === null) {
-    return <h3>Buscando...</h3>;
+    return(
+      <div className="Spinner">
+        <Spinner className="spinner-grow" role="status"/>;
+      </div>
+    )
   }
 
   return (

@@ -43,8 +43,8 @@ function AuthWrapper(props) {
 
   if (isFetching === true) {
     return (
-      <div className="App">
-        <Spinner animation="border" role="status"/>
+      <div className="Spinner">
+       <Spinner className="spinner-grow" role="status"/>
       </div>
     );
   }

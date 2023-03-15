@@ -180,7 +180,7 @@ function RepuestoDetails() {
                   ></img>
                 ) : null}
                 {isUploading ? (
-                  <Spinner animation="border" role="status" />
+                  <Spinner className="spinner-grow" role="status"/>
                 ) : null}
                 {imageUrl ? (
                   <div>
@@ -291,7 +291,7 @@ function RepuestoDetails() {
                   ></img>
                 ) : null}
                 {isUploading ? (
-                  <Spinner animation="border" role="status" />
+                  <Spinner className="Spinner spinner-grow" role="status"/>
                 ) : null}
                 {imageUrl ? (
                   <div>

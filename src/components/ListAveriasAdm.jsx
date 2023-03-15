@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { getAllAveriasService } from "../services/averias.services";
@@ -20,7 +21,11 @@ function ListAveriasAdm() {
   };
 
   if (allAveria === null) {
-    return <h3>Buscando...</h3>;
+    return(
+      <div className="Spinner">
+        <Spinner className="spinner-grow" role="status"/>;
+      </div>
+    )
   }
 
 

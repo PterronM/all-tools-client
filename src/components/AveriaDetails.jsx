@@ -12,18 +12,13 @@ import {
 import { uploadImageService } from "../services/upload.services";
 import ModalAveria from "./Modals/ModalAveria";
 
-
 function AveriaDetails() {
-
   const redirect = useNavigate();
 
   const params = useParams();
 
- 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(!show);
-
-
 
   const [imageUrl, setImageUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -53,8 +48,6 @@ function AveriaDetails() {
       console.log(error);
     }
   };
-
-
 
   const handleMaquinaChange = (e) => setMaquina(e.target.value);
   const handleModeloChange = (e) => setModelo(e.target.value);
@@ -99,7 +92,7 @@ function AveriaDetails() {
 
   const handleDeleteAveriaService = async () => {
     try {
-      handleClose()
+      handleClose();
       redirect("/home");
       await deleteAveriaId(params.idAveria);
     } catch (error) {
@@ -120,112 +113,121 @@ function AveriaDetails() {
 
   return (
     <>
-    <div>
-      {isFeching === true ? (
-        <Spinner animation="border" role="status" />
-      ) : (
-        <div className="details d-flex justify-content-center">
-          <Form className="d-flex flex-column w-75">
-            <FormGroup className="justify-content-center">
-              <Form.Label htmlform="Maquina">Maquina</Form.Label>
-              <Form.Control
-                type="text"
-                name="Maquina"
-                value={maquina}
-                onChange={handleMaquinaChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="modelo">Modelo</Form.Label>
-              <Form.Control
-                type="text"
-                name="modelo"
-                value={modelo}
-                onChange={handleModeloChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="nSerie">Nª de Serie</Form.Label>
-              <Form.Control
-                type="text"
-                name="nSerie"
-                value={nSerie}
-                onChange={handleNserieChange}
-              />
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="image">Fotos Averia</Form.Label>
-              <Form.Control
-                type="file"
-                name="image"
-                onChange={handleFileUpload}
-                disabled={isUploading}
-              />
-              {!imageUrl ? (
-                <img
-                  className="imgCruz"
-                  src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png"
-                  alt="cruz"
-                  width={50}
-                ></img>
-              ) : null}
-              {isUploading ? (
-                <Spinner animation="border" role="status" />
-              ) : null}
-              {imageUrl ? (
-                <div>
+      <div>
+        {isFeching === true ? (
+          <div className="Spinner">
+            <Spinner className="spinner-grow" role="status" />;
+          </div>
+        ) : (
+          <div className="details d-flex justify-content-center">
+            <Form className="d-flex flex-column w-75">
+              <FormGroup className="justify-content-center">
+                <Form.Label htmlform="Maquina">Maquina</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="Maquina"
+                  value={maquina}
+                  onChange={handleMaquinaChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="modelo">Modelo</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="modelo"
+                  value={modelo}
+                  onChange={handleModeloChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="nSerie">Nª de Serie</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="nSerie"
+                  value={nSerie}
+                  onChange={handleNserieChange}
+                />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="image">Fotos Averia</Form.Label>
+                <Form.Control
+                  type="file"
+                  name="image"
+                  onChange={handleFileUpload}
+                  disabled={isUploading}
+                />
+                {!imageUrl ? (
                   <img
-                    className="imgDetails"
-                    src={imageUrl}
-                    alt="img"
-                    width={100}
+                    className="imgCruz"
+                    src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png"
+                    alt="cruz"
+                    width={50}
+                  ></img>
+                ) : null}
+                {isUploading ? (
+                  <Spinner
+                    className="spinner-grow"
+                    animation="border"
+                    role="status"
                   />
-                </div>
-              ) : null}
-            </FormGroup>
-            <br />
-            <FormGroup>
-              <Form.Label htmlform="descriptionAveria">Descripcion</Form.Label>
-              <textarea
-                className="form-control"
-                rows={2}
-                type="text"
-                name="descriptionAveria"
-                value={descriptionAveria}
-                onChange={handledescriptionAveriaChange}
-              />
-            </FormGroup>
-            <br />
-            <br />
-            <Button
-              onClick={handleUpdateAveriaService}
-              type="submit"
-              className="btn btn-warning mb-3"
-            >
-              Actualizar
-            </Button>
+                ) : null}
+                {imageUrl ? (
+                  <div>
+                    <img
+                      className="imgDetails"
+                      src={imageUrl}
+                      alt="img"
+                      width={100}
+                    />
+                  </div>
+                ) : null}
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <Form.Label htmlform="descriptionAveria">
+                  Descripcion
+                </Form.Label>
+                <textarea
+                  className="form-control"
+                  rows={2}
+                  type="text"
+                  name="descriptionAveria"
+                  value={descriptionAveria}
+                  onChange={handledescriptionAveriaChange}
+                />
+              </FormGroup>
+              <br />
+              <br />
+              <Button
+                onClick={handleUpdateAveriaService}
+                type="submit"
+                className="btn btn-warning mb-3"
+              >
+                Actualizar
+              </Button>
 
-            <Button
-              onClick={handleClose}
-              className="btn btn-danger mb-3"
-            >
-              Eliminar
-            </Button>
-            <Button
-              onClick={handleStatusAveriaService}
-              type="submit"
-              className="btn btn-success mb-3"
-            >
-              Finalizar
-            </Button>
-          </Form>
-        </div>
-      )}
-    </div>
-    <ModalAveria show={show} handleClose={handleClose} eliminar={handleDeleteAveriaService}/>
+              <Button onClick={handleClose} className="btn btn-danger mb-3">
+                Eliminar
+              </Button>
+              <Button
+                onClick={handleStatusAveriaService}
+                type="submit"
+                className="btn btn-success mb-3"
+              >
+                Finalizar
+              </Button>
+            </Form>
+          </div>
+        )}
+      </div>
+      <ModalAveria
+        show={show}
+        handleClose={handleClose}
+        eliminar={handleDeleteAveriaService}
+      />
     </>
   );
 }

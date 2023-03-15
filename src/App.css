@@ -141,3 +141,12 @@
   padding: 0.3rem;
   
 }
+
+.Spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #f8931f;
+
+}

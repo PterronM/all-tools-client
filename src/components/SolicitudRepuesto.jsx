@@ -96,7 +96,7 @@ const [isUploading, setIsUploading] = useState(false);
       <FormGroup>
         <Form.Label htmlform="image">Fotos Repuesto</Form.Label>
         <Form.Control type="file" name="image" onChange={handleFileUpload} disabled={isUploading}/>
-        {isUploading ? <Spinner animation="border" role="status" /> : null}
+        {isUploading ? <Spinner className="Spinner spinner-grow" role="status"/>: null}
             {imageUrl ? (
               <div>
                 <img 

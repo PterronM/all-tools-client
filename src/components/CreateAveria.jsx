@@ -1,11 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Form, FormGroup, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import {
-
-  createAveriaAdm,
-  createOneAveria,
-} from "../services/averias.services";
+import { createAveriaAdm, createOneAveria } from "../services/averias.services";
 import { uploadImageService } from "../services/upload.services";
 import { AuthContext } from "../context/auth.context";
 import { getAllUserTecService } from "../services/user.services";
@@ -16,7 +12,7 @@ function Averia() {
   // const params = useParams();
   const { loggedUser } = useContext(AuthContext);
 
-  const [imageUrl, setImageUrl] = useState(null); 
+  const [imageUrl, setImageUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
   const [idUser, setIdUser] = useState("");
@@ -82,7 +78,7 @@ function Averia() {
       maquina,
       modelo,
       nSerie,
-      imgAveria:imageUrl,
+      imgAveria: imageUrl,
       descriptionAveria,
     };
 
@@ -97,22 +93,21 @@ function Averia() {
     event.preventDefault();
 
     const newAveria = {
-      idUser:tecnico,
+      idUser: tecnico,
       maquina,
       modelo,
       nSerie,
-      imgAveria:imageUrl,
+      imgAveria: imageUrl,
       descriptionAveria,
     };
 
     try {
-      await createAveriaAdm(newAveria)
+      await createAveriaAdm(newAveria);
       redirection("/home");
     } catch (error) {
       console.log(error);
     }
   };
- 
 
   if (loggedUser.role === "Tecnico") {
     return (
@@ -156,10 +151,19 @@ function Averia() {
               onChange={handleFileUpload}
               disabled={isUploading}
             />
-            {isUploading ? <Spinner animation="border" role="status" /> : null}
+            {isUploading ? (
+              <div className="Spinner">
+                <Spinner className="spinner-grow" role="status" />;
+              </div>
+            ) : null}
             {imageUrl ? (
               <div>
-                <img className="imgDetails" src={imageUrl} alt="img" width={100} />
+                <img
+                  className="imgDetails"
+                  src={imageUrl}
+                  alt="img"
+                  width={100}
+                />
               </div>
             ) : null}
           </FormGroup>
@@ -199,17 +203,19 @@ function Averia() {
               onChange={handleTecnicoChange}
             >
               {idUser === "" ? (
-                <Spinner animation="border" role="status"/>
+                <div className="Spinner">
+                  <Spinner className="spinner-grow" role="status" />;
+                </div>
               ) : (
                 <>
-                <option>Seleccion</option>
-                {idUser.map((eachUser) => {
-                  return (
-                    <option key={eachUser._id} value={eachUser._id}>
-                      {eachUser.nombre}
-                    </option>
-                  );
-                })}
+                  <option>Seleccion</option>
+                  {idUser.map((eachUser) => {
+                    return (
+                      <option key={eachUser._id} value={eachUser._id}>
+                        {eachUser.nombre}
+                      </option>
+                    );
+                  })}
                 </>
               )}
             </Form.Select>
@@ -250,7 +256,11 @@ function Averia() {
               onChange={handleFileUpload}
               disabled={isUploading}
             />
-            {isUploading ? <Spinner animation="border" role="status" /> : null}
+            {isUploading ? (
+              <div className="Spinner">
+              <Spinner className="spinner-grow" role="status"/>
+              </div>
+            ) : null}
             {imageUrl ? (
               <div>
                 <img src={imageUrl} alt="img" width={100} />
