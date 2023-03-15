@@ -49,9 +49,9 @@ function Login() {
   };
 
   return (
-    <div className="login d-flex flex-column justify-content-center mt-5">
+    <div className="login d-flex flex-column justify-content-center mt-3">
 
-    <div className="d-flex justify-content-center mb-5 mt-5"><img src="logo.png" alt="" width={200} /></div>      
+    <div className="d-flex justify-content-center mb-5 mt-3"><img src="logo.png" alt="" width={200} /></div>      
       <form onSubmit={handleLogin}>
         <div className="input-login">
         <input

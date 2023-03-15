@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect, useContext } from "react";
-import { Button, Form, FormGroup, Spinner } from "react-bootstrap";
+import { Button, Form, FormControl, FormGroup, Spinner } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   updateRepuestoId,
@@ -128,7 +128,7 @@ const [isUploading, setIsUploading] = useState(false);
     return (
       <div>
         <div className="details d-flex justify-content-center">
-          <Form className="d-flex flex-column w-50">
+          <Form className="d-flex flex-column w-75">
             <FormGroup className="justify-content-center">
               <Form.Label htmlform="Maquina">Maquina</Form.Label>
               <Form.Control
@@ -180,7 +180,7 @@ const [isUploading, setIsUploading] = useState(false);
               <Form.Label htmlform="descriptionAveria">Descripcion</Form.Label>
               <textarea
                 className="form-control"
-                rows={3}
+                rows={2}
                 type="text"
                 name="descriptionAveria"
                 value={descriptionRepuesto}
@@ -189,15 +189,12 @@ const [isUploading, setIsUploading] = useState(false);
             </FormGroup>
             <br />
             <FormGroup>
-              <Form.Label htmlform="nSerieRepuesto">
-                Nº de Serie del Repuesto
-              </Form.Label>
-              <textarea
-                className="form-control"
+              <Form.Label htmlform="nSerie">Nª de Serie Repuestos</Form.Label>
+              <Form.Control
                 type="text"
-                name="nSerieRepuesto"
-                value={nSerieRepuesto}
-                onChange={handlenSerieRepuestoChange}
+                name="nSerie"
+                value={nSerie}
+                onChange={handleNserieChange}
               />
             </FormGroup>
             <br />

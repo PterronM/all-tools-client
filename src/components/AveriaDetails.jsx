@@ -155,8 +155,8 @@ const [isUploading, setIsUploading] = useState(false);
               {!imageUrl ? <img src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png" alt="cruz" width={50}></img> : null}
               {isUploading ? <Spinner animation="border" role="status" />: null}
               {imageUrl ? (
-                <div className="imgDetails">
-                  <img src={imageUrl} alt="img" width={100} />
+                <div>
+                  <img className="imgDetails" src={imageUrl} alt="img" width={100} />
                 </div>
               ) : null}
             </FormGroup>
@@ -165,7 +165,7 @@ const [isUploading, setIsUploading] = useState(false);
               <Form.Label htmlform="descriptionAveria">Descripcion</Form.Label>
               <textarea
                 className="form-control"
-                rows={4}
+                rows={2}
                 type="text"
                 name="descriptionAveria"
                 value={descriptionAveria}

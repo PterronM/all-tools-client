@@ -116,8 +116,8 @@ function Averia() {
 
   if (loggedUser.role === "Tecnico") {
     return (
-      <div className="d-flex justify-content-center mt-5">
-        <Form className="d-flex flex-column w-50 ">
+      <div className="d-flex justify-content-center mt-3">
+        <Form className="d-flex flex-column w-75 ">
           <FormGroup className="justify-content-center">
             <Form.Label htmlform="Maquina">Maquina</Form.Label>
             <Form.Control
@@ -159,7 +159,7 @@ function Averia() {
             {isUploading ? <Spinner animation="border" role="status" /> : null}
             {imageUrl ? (
               <div>
-                <img src={imageUrl} alt="img" width={100} />
+                <img className="imgDetails" src={imageUrl} alt="img" width={100} />
               </div>
             ) : null}
           </FormGroup>
@@ -180,7 +180,7 @@ function Averia() {
           <Button
             onClick={handleSubmitTec}
             type="submit"
-            className="btn btn-success mb-3 mt-3"
+            className="btn btn-success mt-1"
           >
             Enviar
           </Button>

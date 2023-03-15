@@ -76,8 +76,8 @@ const [isUploading, setIsUploading] = useState(false);
   return (
     <div>
      
-   <div className="d-flex justify-content-center mt-5">
-   <Form className="d-flex flex-column w-50 " >
+   <div className="d-flex justify-content-center mt-3">
+   <Form className="d-flex flex-column w-75 " >
       <FormGroup className="justify-content-center" >
         <Form.Label htmlform="Maquina">Maquina</Form.Label>
         <Form.Control type="text" name="Maquina" value={maquina} onChange={handleMaquinaChange} />
