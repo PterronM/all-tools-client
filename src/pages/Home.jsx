@@ -8,7 +8,7 @@ function Home() {
   const { loggedUser } = useContext(AuthContext);
 
   return (
-    <div className="d-flex flex-column home" style={{height: "100vh"}}>
+    <div className="d-flex flex-column home">
 
     {loggedUser.role === "Tecnico" ? <PerfTec/> :  <PerfAdm/>}   
 

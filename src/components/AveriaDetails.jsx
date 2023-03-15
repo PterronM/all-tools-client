@@ -93,8 +93,8 @@ function AveriaDetails() {
   const handleDeleteAveriaService = async () => {
     try {
       handleClose();
-      redirect("/home");
       await deleteAveriaId(params.idAveria);
+      redirect("/home");
     } catch (error) {
       console.log(error);
     }
