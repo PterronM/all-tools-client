@@ -101,8 +101,8 @@ function RepuestoDetails() {
   const handleStatusRepuestoService = async () => {
     const updateStatus = { aceptada: aceptarStatus };
     try {
-      await updateRepuestoStatus(params.idRepuesto, updateStatus);
       redirect("/home");
+      await updateRepuestoStatus(params.idRepuesto, updateStatus);
     } catch (error) {
       console.log(error);
     }
@@ -112,16 +112,16 @@ function RepuestoDetails() {
     const updateStatus = { rechazada: rechazarStatus };
 
     try {
-      await updateRepuestoStatus(params.idRepuesto, updateStatus);
       redirect("/home");
+      await updateRepuestoStatus(params.idRepuesto, updateStatus);
     } catch (error) {
       console.log(error);
     }
   };
   const handleDeleteRepuestoService = async () => {
     try {
-      await deleteRepuestoId(params.idRepuesto);
       redirect("/home");
+      await deleteRepuestoId(params.idRepuesto);
     } catch (error) {
       console.log(error);
     }
