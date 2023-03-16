@@ -27,7 +27,7 @@ function Login() {
     try {
       //TODO--1---contactamos con el BE para pasarle las credenciales del usuario y validarlas
       const response = await loginService(userCredentials);
-      //**console.log(response);
+
 
       //TODO--2----Recibir el token del backend y almacenarlo en el localStorage------
       localStorage.setItem("authToken", response.data.authToken);
