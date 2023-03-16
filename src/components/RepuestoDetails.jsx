@@ -173,14 +173,14 @@ function RepuestoDetails() {
                 />
                 {!imageUrl ? (
                   <img
-                   className="imgCruz"
+                    className="imgCruz"
                     src="https://static.vecteezy.com/system/resources/previews/016/314/454/non_2x/red-cross-mark-free-png.png"
                     alt="cruz"
                     width={50}
                   ></img>
                 ) : null}
                 {isUploading ? (
-                  <Spinner className="spinner-grow" role="status"/>
+                  <Spinner className="spinner-grow" role="status" />
                 ) : null}
                 {imageUrl ? (
                   <div>
@@ -219,17 +219,20 @@ function RepuestoDetails() {
               </FormGroup>
               <br />
               <div className="btnDetailsRepuestoWebTec">
-              <Button
-                onClick={handleUpdateRepuestoService}
-                type="submit"
-                className="btn btn-warning mb-3 btnDetailsRepWebTec"
-              >
-                Actualizar
-              </Button>
-              <div></div> 
-              <Button onClick={handleClose} className="btn btn-danger mb-3 btnDetailsRepWebTec">
-                Eliminar
-              </Button>
+                <Button
+                  onClick={handleUpdateRepuestoService}
+                  type="submit"
+                  className="btn btn-warning mb-3 btnDetailsRepWebTec"
+                >
+                  Actualizar
+                </Button>
+                <div></div>
+                <Button
+                  onClick={handleClose}
+                  className="btn btn-danger mb-3 btnDetailsRepWebTec"
+                >
+                  Eliminar
+                </Button>
               </div>
             </Form>
           </div>
@@ -294,7 +297,7 @@ function RepuestoDetails() {
                   ></img>
                 ) : null}
                 {isUploading ? (
-                  <Spinner className="Spinner spinner-grow" role="status"/>
+                  <Spinner className="Spinner spinner-grow" role="status" />
                 ) : null}
                 {imageUrl ? (
                   <div>
@@ -335,41 +338,38 @@ function RepuestoDetails() {
               </FormGroup>
             </Form>
             <br />
-            <div className="d-flex w-100 justify-content-center mt-3 ">
-              <Form className="d-flex gap-3">
-                <div className="d-flex flex-column btnDetailsRepuestoWeb">
-                  <Button
-                    onClick={handleUpdateRepuestoService}
-                    type="submit"
-                    className="btn btn-warning mb-3"
-                  >
-                    Actualizar
-                  </Button>
-                  <Button
-                    onClick={handleStatusRepuestoService}
-                    type="submit"
-                    className="btn btn-success mb-3"
-                  >
-                    Aceptar
-                  </Button>
-
-                  <div className="d-flex flex-column btnDetailsRepuestoWeb">
-                  <Button
-                    onClick={handleRechazarRepuestoService}
-                    type="submit"
-                    className="btn btn-primary mb-3"
-                  >
-                    Rechazar
-                  </Button>
-                  <Button onClick={handleClose} className="btn btn-danger mb-3">
-                    Eliminar
-                  </Button>
-                </div>
-                </div>
+            <div className="d-flex w-100 justify-content-around flex-wrap mt-3">
+                  
+                    <Button
+                      onClick={handleUpdateRepuestoService}
+                      type="submit"
+                      className="btnRepuestoWebAdm btn btn-warning mb-3"
+                    >
+                      Actualizar
+                    </Button>
+                    <Button
+                      onClick={handleStatusRepuestoService}
+                      type="submit"
+                      className="btnRepuestoWebAdm btn btn-success mb-3"
+                    >
+                      Aceptar
+                    </Button>
 
                 
-              </Form>
-            </div>
+                      <Button
+                        onClick={handleRechazarRepuestoService}
+                        type="submit"
+                        className="btnRepuestoWebAdm btn btn-primary mb-3"
+                      >
+                        Rechazar
+                      </Button>
+                      <Button
+                        onClick={handleClose}
+                        className="btnRepuestoWebAdm btn btn-danger mb-3"
+                      >
+                        Eliminar
+                      </Button>
+                      </div>
           </div>
         </div>
         <ModalRepuesto

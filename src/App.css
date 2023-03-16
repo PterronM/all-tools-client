@@ -172,11 +172,18 @@
   gap: 1rem;
   width: 20vw;
 }
+
+.btnRepuestoWebAdm{
+  width: 10vw;
+  height: 5vh;
+}
+
 .btnDetailsRepuestoWebTec{
-  width: auto;
+  justify-content: space-between;
+  width: 100%;
 }
 .btnDetailsRepWebTec{
-  width: 30%;
+  width: 40%;
 }
 
 .detailsAveriaWeb{
