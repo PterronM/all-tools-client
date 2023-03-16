@@ -104,8 +104,8 @@ function AveriaDetails() {
     const updateStatus = { finalizada: finalizarStatus };
     // console.log(updateStatus);
     try {
-      await updateAveriaStatus(params.idAveria, updateStatus);
       redirect("/home");
+      await updateAveriaStatus(params.idAveria, updateStatus);
     } catch (error) {
       console.log(error);
     }
