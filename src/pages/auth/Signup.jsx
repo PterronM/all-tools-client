@@ -33,7 +33,6 @@ function Signup() {
     } catch (error) {
      
       if (error.response.status === 400) {
-        //Mostramos al usuario como solventar el problema
         setErrorMessage(error.response.data.errorMessage);
       } else {
         redirect("/error");
