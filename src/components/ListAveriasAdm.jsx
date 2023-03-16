@@ -23,7 +23,7 @@ function ListAveriasAdm() {
   if (allAveria === null) {
     return(
       <div className="Spinner">
-        <Spinner className="spinner-grow" role="status"/>;
+        <Spinner className="spinner-grow" role="status"/>
       </div>
     )
   }

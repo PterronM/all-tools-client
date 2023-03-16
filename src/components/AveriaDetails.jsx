@@ -116,7 +116,7 @@ function AveriaDetails() {
       <div>
         {isFeching === true ? (
           <div className="Spinner">
-            <Spinner className="spinner-grow" role="status" />;
+            <Spinner className="spinner-grow" role="status" />
           </div>
         ) : (
           <div className="details d-flex justify-content-center">

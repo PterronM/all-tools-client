@@ -153,7 +153,7 @@ function Averia() {
             />
             {isUploading ? (
               <div className="Spinner">
-                <Spinner className="spinner-grow" role="status" />;
+                <Spinner className="spinner-grow" role="status" />
               </div>
             ) : null}
             {imageUrl ? (
@@ -204,7 +204,7 @@ function Averia() {
             >
               {idUser === "" ? (
                 <div className="Spinner">
-                  <Spinner className="spinner-grow" role="status" />;
+                  <Spinner className="spinner-grow" role="status" />
                 </div>
               ) : (
                 <>
