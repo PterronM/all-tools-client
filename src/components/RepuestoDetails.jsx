@@ -352,9 +352,8 @@ function RepuestoDetails() {
                   >
                     Aceptar
                   </Button>
-                </div>
 
-                <div className="d-flex flex-column btnDetailsRepuestoWeb">
+                  <div className="d-flex flex-column btnDetailsRepuestoWeb">
                   <Button
                     onClick={handleRechazarRepuestoService}
                     type="submit"
@@ -366,6 +365,9 @@ function RepuestoDetails() {
                     Eliminar
                   </Button>
                 </div>
+                </div>
+
+                
               </Form>
             </div>
           </div>
