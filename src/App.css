@@ -158,7 +158,6 @@
 
 .home{
   align-items:stretch;
-
 }
 .container-home{
   margin: auto;
@@ -181,7 +180,15 @@
 }
 
 .detailsAveriaWeb{
-
+  width: 80vw;
+  margin: auto;
+  height: 90vh;
 }
 
 } 
+
+@media (min-width:391px) {
+  .loginBtn{
+    width: 20vw;
+  }
+}

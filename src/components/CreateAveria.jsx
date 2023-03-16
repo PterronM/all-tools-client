@@ -111,9 +111,9 @@ function Averia() {
 
   if (loggedUser.role === "Tecnico") {
     return (
-      <div>
-      <div className="container-home d-flex justify-content-center mt-3">
-        <Form className="d-flex flex-column w-75">
+      <div className="d-flex flex-column justify-content-center">
+          <div className="detailsAveriaWeb mt-1 d-flex flex-column justify-content-center align-items-center">
+            <Form className="d-flex flex-column w-75">
           <FormGroup className="justify-content-center">
             <Form.Label htmlform="Maquina">Maquina</Form.Label>
             <Form.Control
