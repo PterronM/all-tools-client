@@ -42,17 +42,31 @@ function ListRepuestos() {
       {allRepuestos.map((eachRepuesto) => {
         return(
           
-          <div className="boxDetails d-flex justify-content-between align-items-center w-75 p-1" key={eachRepuesto._id}>
-            <Link className="text-decoration-none text-black" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}><span>{new Date(eachRepuesto.createdAt).toLocaleDateString()} </span>
-            <span> -- {eachRepuesto.descriptionRepuesto}</span></Link>
-            <div className="estado">
-            {eachRepuesto.estadoRepuesto === "Pendiente"  && <p>⏱️</p>}  
-            {eachRepuesto.estadoRepuesto === "Rechazada" && <p>❌</p>} 
-            {eachRepuesto.estadoRepuesto === "Aceptada" && <p>✅</p>}
-
-            </div>
-            
-          </div>
+         <Link
+            className="d-flex boxDetails text-decoration-none text-black justify-content-between"
+            to={`/repuesto/${eachRepuesto._id}/details`}
+            value={eachRepuesto._id}
+          >
+          <div
+              className=" d-flex justify-content-between"
+              key={eachRepuesto._id}
+            >
+            <p>
+              <span>{eachRepuesto.descriptionRepuesto}</span>
+              <br />
+              <span>{eachRepuesto.maquina}</span>
+              <br />
+              <span>
+                {new Date(eachRepuesto.createdAt).toLocaleDateString()}{" "}
+              </span>
+            </p> 
+            </div> 
+              <div>
+                {eachRepuesto.estadoRepuesto === "Pendiente" && <p>⏱️</p>}
+                {eachRepuesto.estadoRepuesto === "Rechazada" && <p>❌</p>}
+                {eachRepuesto.estadoRepuesto === "Aceptada" && <p>✅</p>}
+              </div>
+          </Link>
         ) 
       })}
     </div>

@@ -119,7 +119,8 @@ function AveriaDetails() {
             <Spinner className="spinner-grow" role="status" />
           </div>
         ) : (
-          <div className="details d-flex justify-content-center">
+          <div className="d-flex flex-column justify-content-center">
+          <div className="detailsRepuestoWeb mt-1 d-flex flex-column justify-content-center align-items-center">
             <Form className="d-flex flex-column w-75">
               <FormGroup className="justify-content-center">
                 <Form.Label htmlform="Maquina">Maquina</Form.Label>
@@ -201,6 +202,9 @@ function AveriaDetails() {
               </FormGroup>
               <br />
               <br />
+              <div className="d-flex w-100 justify-content-center ">
+              <Form className="d-flex gap-3">
+                <div className="d-flex flex-column btnDetailsRepuestoWeb">
               <Button
                 onClick={handleUpdateAveriaService}
                 type="submit"
@@ -219,8 +223,12 @@ function AveriaDetails() {
               >
                 Finalizar
               </Button>
+            </div>
+            </Form>
+            </div>
             </Form>
           </div>
+        </div>
         )}
       </div>
       <ModalAveria

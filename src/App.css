@@ -107,6 +107,8 @@
   background-color: white;
   border-radius: 10px;
   box-shadow:3px 3px 7px grey ;
+  /* text-align: start; */
+  padding: 0.3rem;
 }
 
 .averias{
@@ -141,22 +143,45 @@
   text-align: start;
   padding: 0.3rem;
   
-}
+} 
 
 .Spinner{
-  display: flex;
+  
   justify-content: center;
-  align-items: center;
-  align-content: center;
+  margin: auto;
   color: #f8931f;
 
 }
 
 
- @media (min-width: 650px) {
+ @media (min-width: 820px) {
 
 .home{
+  align-items:stretch;
 
-align-items: center;
 }
+.container-home{
+  margin: auto;
+  width: 80vw;
+}
+.detailsRepuestoWeb{
+  width: 80vw;
+  margin: auto;
+  height: 90vh;
+}
+.btnDetailsRepuestoWeb{
+  gap: 1rem;
+  width: 20vw;
+}
+.btnDetailsRepuestoWebTec{
+  width: auto;
+}
+.btnDetailsRepWebTec{
+  width: 30%;
+}
+
+.detailsAveriaWeb{
+
+}
+
 } 

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { getAllAveriasService } from "../services/averias.services";
 
 function ListAveriasAdm() {
-
   const [allAveria, setAllAveria] = useState(null);
   const [isFeaching, setIsFeaching] = useState(true);
 
@@ -14,42 +13,54 @@ function ListAveriasAdm() {
   }, []);
 
   const getData = async () => {
-    const response = await getAllAveriasService()
+    const response = await getAllAveriasService();
     // console.log(response.data)
     setAllAveria(response.data);
     setIsFeaching(false);
   };
 
   if (allAveria === null) {
-    return(
+    return (
       <div className="Spinner">
-        <Spinner className="spinner-grow" role="status"/>
+        <Spinner className="spinner-grow" role="status" />;
       </div>
-    )
+    );
   }
-
 
   return (
     <div className="boxPendiAdm d-flex flex-column gap-2">
-      <p className="mb-3" style={{ borderBottom: "1px solid black" }}>Lista Averias</p>
+      <h2 className="mb-3 boxPendi" style={{ borderBottom: "1px solid black" }}>
+        Lista Averias
+      </h2>
       {allAveria.map((eachAveria) => {
-        return(
-          
-          <div className="boxDetails d-flex justify-content-between bg-white" key={eachAveria._id}>
-            <Link className="contenido-box text-decoration-none text-black" to = {`/averia/${eachAveria._id}/details`} value={eachAveria._id}><span>{eachAveria.maquina}</span><br /><span>{new Date(eachAveria.createdAt).toLocaleDateString()} </span>
-            </Link>
-            <div className="estado">
-            {eachAveria.estadoAveria === "Pendiente"  && <p>⏱️</p>}  
-            {eachAveria.estadoAveria === "Rechazada" && <p>❌</p>} 
-            {eachAveria.estadoAveria === "Finalizada" && <p>✅</p>}
-
+        return (
+          <Link
+            className="d-flex boxDetails text-decoration-none text-black justify-content-between"
+            to={`/averia/${eachAveria._id}/details`}
+            value={eachAveria._id}
+          >
+            <div
+              className=" d-flex justify-content-between"
+              key={eachAveria._id}
+            >
+              <p>
+                <span>{eachAveria.maquina}</span>
+                <br />
+                <span>
+                  {new Date(eachAveria.createdAt).toLocaleDateString()}{" "}
+                </span>
+              </p>
             </div>
-            
-          </div>
-        ) 
+            <div>
+              {eachAveria.estadoAveria === "Pendiente" && <p>⏱️</p>}
+              {eachAveria.estadoAveria === "Rechazada" && <p>❌</p>}
+              {eachAveria.estadoAveria === "Finalizada" && <p>✅</p>}
+            </div>
+          </Link>
+        );
       })}
     </div>
   );
 }
 
-export default ListAveriasAdm
+export default ListAveriasAdm;

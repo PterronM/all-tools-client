@@ -19,31 +19,46 @@ function ListRepuestosAdm() {
   };
 
   if (allRepuestos === null) {
-    return(
+    return (
       <div className="Spinner">
-        <Spinner className="spinner-grow" role="status"/>
+        <Spinner className="spinner-grow" role="status" />
       </div>
-    )
+    );
   }
 
   return (
-    <div className="d-flex flex-column gap-2">
-      <p className="mb-3" style={{ borderBottom: "1px solid black" }}>Solicitud Repuesto</p>
+    <div className="boxPendi d-flex flex-column gap-2">
+      <h2 className="mb-3" style={{ borderBottom: "1px solid black" }}>
+        Solicitud Repuesto
+      </h2>
       {allRepuestos.map((eachRepuesto) => {
-        return(
-          
-          <div className="boxDetails d-flex justify-content-between bg-white" key={eachRepuesto._id}>
-            <Link className="text-decoration-none text-black contenido-box" to = {`/repuesto/${eachRepuesto._id}/details`} value={eachRepuesto._id}><span>{eachRepuesto.descriptionRepuesto}</span><br /><span>{eachRepuesto.maquina}</span><br /><span>{new Date(eachRepuesto.createdAt).toLocaleDateString()} </span>
-            </Link>
-            <div className="estado">
-            {eachRepuesto.estadoRepuesto === "Pendiente"  && <p>⏱️</p>}  
-            {eachRepuesto.estadoRepuesto === "Rechazada" && <p>❌</p>} 
-            {eachRepuesto.estadoRepuesto === "Aceptada" && <p>✅</p>}
-
-            </div>
-            
-          </div>
-        ) 
+        return (
+          <Link
+            className="d-flex boxDetails text-decoration-none text-black justify-content-between"
+            to={`/repuesto/${eachRepuesto._id}/details`}
+            value={eachRepuesto._id}
+          >
+          <div
+              className=" d-flex justify-content-between"
+              key={eachRepuesto._id}
+            >
+            <p>
+              <span>{eachRepuesto.descriptionRepuesto}</span>
+              <br />
+              <span>{eachRepuesto.maquina}</span>
+              <br />
+              <span>
+                {new Date(eachRepuesto.createdAt).toLocaleDateString()}{" "}
+              </span>
+            </p> 
+            </div> 
+              <div>
+                {eachRepuesto.estadoRepuesto === "Pendiente" && <p>⏱️</p>}
+                {eachRepuesto.estadoRepuesto === "Rechazada" && <p>❌</p>}
+                {eachRepuesto.estadoRepuesto === "Aceptada" && <p>✅</p>}
+              </div>
+          </Link>
+        );
       })}
     </div>
   );

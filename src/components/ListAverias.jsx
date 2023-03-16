@@ -44,16 +44,29 @@ function ListAverias() {
       {allAverias.map(( eachAveria) => {
 
         return(
-          <div className=" boxDetails d-flex justify-content-between align-items-center w-75 p-1 " key={eachAveria._id}>
-          
-            <Link className="text-decoration-none text-black" to = {`/averia/${eachAveria._id}/details`} value={eachAveria._id}><span>{new Date(eachAveria.createdAt).toLocaleDateString()} </span>
-            <span> - {eachAveria.maquina}</span></Link>
-            <div className="estado">
-            {eachAveria.estadoAveria === "Pendiente"  && <p>⏱️</p>}  
-            {eachAveria.estadoAveria === "Rechazada" && <p>❌</p>} 
-            {eachAveria.estadoAveria === "Finalizada" && <p>✅</p>}
+        <Link
+            className="d-flex boxDetails text-decoration-none text-black justify-content-between"
+            to={`/averia/${eachAveria._id}/details`}
+            value={eachAveria._id}
+          >
+            <div
+              className=" d-flex justify-content-between"
+              key={eachAveria._id}
+            >
+              <p>
+                <span>{eachAveria.maquina}</span>
+                <br />
+                <span>
+                  {new Date(eachAveria.createdAt).toLocaleDateString()}{" "}
+                </span>
+              </p>
             </div>
-          </div>
+            <div>
+              {eachAveria.estadoAveria === "Pendiente" && <p>⏱️</p>}
+              {eachAveria.estadoAveria === "Rechazada" && <p>❌</p>}
+              {eachAveria.estadoAveria === "Finalizada" && <p>✅</p>}
+            </div>
+          </Link>
         ) 
       })}
     </div>

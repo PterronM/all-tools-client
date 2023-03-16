@@ -9,9 +9,9 @@ function Home() {
 
   return (
     <div className="d-flex flex-column home">
-
+    <div className="container-home">
     {loggedUser.role === "Tecnico" ? <PerfTec/> :  <PerfAdm/>}   
-
+    </div>
     </div>
   )
 }

@@ -111,8 +111,9 @@ function Averia() {
 
   if (loggedUser.role === "Tecnico") {
     return (
-      <div className="d-flex justify-content-center mt-3">
-        <Form className="d-flex flex-column w-75 ">
+      <div>
+      <div className="container-home d-flex justify-content-center mt-3">
+        <Form className="d-flex flex-column w-75">
           <FormGroup className="justify-content-center">
             <Form.Label htmlform="Maquina">Maquina</Form.Label>
             <Form.Control
@@ -190,9 +191,11 @@ function Averia() {
           </Button>
         </Form>
       </div>
+      </div>
     );
   } else {
     return (
+      <div>
       <div className="d-flex justify-content-center mt-5">
         <Form className="d-flex flex-column w-50 ">
           <Form.Label htmlform="tecnico">Técnico</Form.Label>
@@ -289,6 +292,7 @@ function Averia() {
             Enviar
           </Button>
         </Form>
+      </div>
       </div>
     );
   }

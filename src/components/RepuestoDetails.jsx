@@ -130,8 +130,8 @@ function RepuestoDetails() {
   if (loggedUser.role === "Tecnico") {
     return (
       <>
-        <div>
-          <div className="details d-flex justify-content-center">
+        <div className="d-flex flex-column justify-content-center">
+          <div className="detailsRepuestoWeb mt-1 d-flex flex-column justify-content-center align-items-center">
             <Form className="d-flex flex-column w-75">
               <FormGroup className="justify-content-center">
                 <Form.Label htmlform="Maquina">Maquina</Form.Label>
@@ -218,16 +218,19 @@ function RepuestoDetails() {
                 />
               </FormGroup>
               <br />
+              <div className="btnDetailsRepuestoWebTec">
               <Button
                 onClick={handleUpdateRepuestoService}
                 type="submit"
-                className="btn btn-warning mb-3"
+                className="btn btn-warning mb-3 btnDetailsRepWebTec"
               >
                 Actualizar
               </Button>
-              <Button onClick={handleClose} className="btn btn-danger mb-3">
+              <div></div> 
+              <Button onClick={handleClose} className="btn btn-danger mb-3 btnDetailsRepWebTec">
                 Eliminar
               </Button>
+              </div>
             </Form>
           </div>
         </div>
@@ -242,8 +245,8 @@ function RepuestoDetails() {
     return (
       <>
         <div className="d-flex flex-column justify-content-center">
-          <div className="mt-3 d-flex flex-column justify-content-center align-items-center">
-            <Form className="d-flex flex-column">
+          <div className="detailsRepuestoWeb mt-1 d-flex flex-column justify-content-center align-items-center">
+            <Form className="d-flex flex-column w-75">
               <FormGroup className="justify-content-center">
                 <Form.Label htmlform="Maquina">Maquina</Form.Label>
                 <Form.Control
@@ -332,9 +335,9 @@ function RepuestoDetails() {
               </FormGroup>
             </Form>
             <br />
-            <div className="d-flex w-100 justify-content-center mt-3">
+            <div className="d-flex w-100 justify-content-center mt-3 ">
               <Form className="d-flex gap-3">
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column btnDetailsRepuestoWeb">
                   <Button
                     onClick={handleUpdateRepuestoService}
                     type="submit"
@@ -351,7 +354,7 @@ function RepuestoDetails() {
                   </Button>
                 </div>
 
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column btnDetailsRepuestoWeb">
                   <Button
                     onClick={handleRechazarRepuestoService}
                     type="submit"
