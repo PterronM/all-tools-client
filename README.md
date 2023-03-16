@@ -13,7 +13,7 @@ Dicha app permite generar por parte de los técnicos, averias y solicitudes de r
 - CRUD
 
 
-## Data Structure
+
 
 # Componentes
 - AVeriaDetails.jsx
