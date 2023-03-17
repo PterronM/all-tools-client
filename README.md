@@ -51,11 +51,35 @@ Dicha app permite generar por parte de los técnicos, averias y solicitudes de r
 # services
 
 - auth.services
+    - signupService(newUser)
+    - loginService(userCredentials)
+    - verifyService()
 - averias.services
+    - getAllAveriasService()
+    - getAveriasIdService()
+    - createOneAveria(newAveria)
+    - createAveriaAdm(newAveria)
+    - averiaDetailsService(idAveria)
+    - updateAveriaId(idAveria, updateAveria)
+    - updateAveriaStatus(idAveria, updateStatus)
+    - deleteAveriaId(idAveria)
+
 - config.services
 - pepuestos.services
+    - getAllRepuestosService()
+    - getRepuestosIdService()
+    - createOneRepuesto(newRepuesto)
+    - updateRepuestoId(idRepuesto, updateRepuesto)
+    - repuestoDetailsService(idRepuesto)
+    - updateRepuestoStatus(idRepuesto, updateStatus)
+    - deleteRepuestoId(idRepuesto)
 - upload.services
 - user.services
+    - getAllUserTecService()
+    - getDetailsUserTec(idUser)
+    - updateAveriaStatus(idUser,updateUser)
+    - deleteAveriaId(idUser)
+
 
 
 
