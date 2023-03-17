@@ -19,9 +19,6 @@ function ListAverias() {
     setIsFeaching(true);
     try {
       const response = await getAveriasIdService();
-      // console.log(response.data);
-   
-
       setAllAverias(response.data);
       setIsFeaching(false);
     } catch (error) {

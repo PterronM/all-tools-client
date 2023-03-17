@@ -15,6 +15,7 @@ function ListAveriasAdm() {
   }, []);
 
   const getData = async () => {
+    setIsFeaching(true)
     try {
       const response = await getAllAveriasService();
       // console.log(response.data)
