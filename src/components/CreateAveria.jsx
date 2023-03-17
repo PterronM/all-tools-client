@@ -39,7 +39,7 @@ function Averia() {
 
   const handleTecnicoChange = (event) => {
     setTecnico(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
   const handleMaquinaChange = (event) => {
     setMaquina(event.target.value);
@@ -64,7 +64,8 @@ function Averia() {
       setImageUrl(response.data.imageUrl);
       setIsUploading(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      redirection("/home")
     }
   };
   const handledescriptionAveriaChange = (event) => {
@@ -86,7 +87,8 @@ function Averia() {
       await createOneAveria(newAveria);
       redirection("/home");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      redirection("/home")
     }
   };
   const handleSubmitAdm = async (event) => {
@@ -105,7 +107,8 @@ function Averia() {
       await createAveriaAdm(newAveria);
       redirection("/home");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      redirection("/home")
     }
   };
 

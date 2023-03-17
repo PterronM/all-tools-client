@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllAveriasService } from "../services/averias.services";
 
 function ListAveriasAdm() {
+
+  const redirect = useNavigate()
   const [allAveria, setAllAveria] = useState(null);
   const [isFeaching, setIsFeaching] = useState(true);
 
@@ -13,10 +15,15 @@ function ListAveriasAdm() {
   }, []);
 
   const getData = async () => {
-    const response = await getAllAveriasService();
-    // console.log(response.data)
-    setAllAveria(response.data);
-    setIsFeaching(false);
+    try {
+      const response = await getAllAveriasService();
+      // console.log(response.data)
+      setAllAveria(response.data);
+      setIsFeaching(false);
+    } catch (error) {
+      redirect("/home")
+    }
+ 
   };
 
   if (allAveria === null) {

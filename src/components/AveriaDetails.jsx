@@ -45,7 +45,7 @@ function AveriaDetails() {
       setImageUrl(response.data.imgAveria);
       setdescriptionAveria(response.data.descriptionAveria);
     } catch (error) {
-      console.log(error);
+      redirect("/home")
     }
   };
 
@@ -65,7 +65,8 @@ function AveriaDetails() {
       setImageUrl(response.data.imageUrl);
       setIsUploading(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      redirect("/home")
     }
   };
   const handledescriptionAveriaChange = (e) =>
@@ -86,7 +87,7 @@ function AveriaDetails() {
       redirect("/home");
       await updateAveriaId(params.idAveria, updateAveria);
     } catch (error) {
-      console.log(error);
+      redirect("/home")
     }
   };
 
@@ -96,7 +97,8 @@ function AveriaDetails() {
       await deleteAveriaId(params.idAveria);
       redirect("/home");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      redirect("/home")
     }
   };
 
@@ -107,7 +109,8 @@ function AveriaDetails() {
       redirect("/home");
       await updateAveriaStatus(params.idAveria, updateStatus);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      redirect("/home")
     }
   };
 

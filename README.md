@@ -1,11 +1,13 @@
 # ALL TOOLS
 
+## Cliente
+
 ## Descripcion
 
 All tools es una app enfocada al mundo de maquinaria industrial. Con dicha app podemos facilitar el trabajo diario de los técnicos y jefes de taller a la hora de comunicarse entre ellos. 
 Dicha app permite generar por parte de los técnicos, averias y solicitudes de repuesto, asi como por parte del administrador poder gestionar dichas averias y peticiones, al igual que poder generar nuevas averias y asignarlas al tecnico que corresponda.
 
-## MVP (DOM
+## MVP 
 
 - Autorizacion
 - Autenticacion

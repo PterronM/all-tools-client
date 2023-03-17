@@ -25,14 +25,11 @@ function Login() {
     };
 
     try {
-      //TODO--1---contactamos con el BE para pasarle las credenciales del usuario y validarlas
+
       const response = await loginService(userCredentials);
 
-
-      //TODO--2----Recibir el token del backend y almacenarlo en el localStorage------
       localStorage.setItem("authToken", response.data.authToken);
 
-      //TODO --3----Establecer mi contexto para decirle a toda la APP que el usuario esta activo
       redirect("/home");
       authenticaUser();
     } catch (error) {

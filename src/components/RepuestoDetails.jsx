@@ -41,8 +41,6 @@ function RepuestoDetails() {
   const getAllData = async () => {
     try {
       const response = await repuestoDetailsService(params.idRepuesto);
-      //   console.log(response);
-      //   setSingleAveria(response.data);
       setIsFeching(false);
       setMaquina(response.data.maquina);
       setModelo(response.data.modelo);
@@ -51,7 +49,8 @@ function RepuestoDetails() {
       setDescriptionRepuesto(response.data.descriptionRepuesto);
       setnSerieRepuesto(response.data.nSerieRepuesto);
     } catch (error) {
-      console.log(error);
+
+      redirect("/home")
     }
   };
 
@@ -71,7 +70,7 @@ function RepuestoDetails() {
       setImageUrl(response.data.imageUrl);
       setIsUploading(false);
     } catch (error) {
-      console.log(error);
+      redirect("/home")
     }
   };
   const handledescriptionRepuestoChange = (e) =>
@@ -94,7 +93,8 @@ function RepuestoDetails() {
       await updateRepuestoId(params.idRepuesto, updateRepuesto);
       redirect("/home");
     } catch (error) {
-      console.log(error);
+
+      redirect("/home")
     }
   };
 
@@ -104,7 +104,8 @@ function RepuestoDetails() {
       redirect("/home");
       await updateRepuestoStatus(params.idRepuesto, updateStatus);
     } catch (error) {
-      console.log(error);
+
+      redirect("/home")
     }
   };
 
@@ -115,7 +116,8 @@ function RepuestoDetails() {
       redirect("/home");
       await updateRepuestoStatus(params.idRepuesto, updateStatus);
     } catch (error) {
-      console.log(error);
+
+      redirect("/home")
     }
   };
   const handleDeleteRepuestoService = async () => {
@@ -123,7 +125,8 @@ function RepuestoDetails() {
       redirect("/home");
       await deleteRepuestoId(params.idRepuesto);
     } catch (error) {
-      console.log(error);
+
+      redirect("/home")
     }
   };
 

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getAllRepuestosService } from "../services/repuestos.services";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
 function ListRepuestosAdm() {
+  const redirect = useNavigate()
   const [allRepuestos, setAllRepuestos] = useState(null);
   const [isFeaching, setIsFeaching] = useState(true);
 
@@ -12,10 +13,15 @@ function ListRepuestosAdm() {
   }, []);
 
   const getData = async () => {
-    const response = await getAllRepuestosService();
-    // console.log(response.data)
-    setAllRepuestos(response.data);
-    setIsFeaching(false);
+    try {
+      const response = await getAllRepuestosService();
+      // console.log(response.data)
+      setAllRepuestos(response.data);
+      setIsFeaching(false);
+    } catch (error) {
+      redirect("/home")
+    }
+
   };
 
   if (allRepuestos === null) {

@@ -39,7 +39,7 @@ const [isUploading, setIsUploading] = useState(false);
       setImageUrl(response.data.imageUrl);
       setIsUploading(false);
     } catch (error) {
-      console.log(error);
+      redirection("/home")
     }
   };
   const handledescripcionRepuestoChange = (event)=>{
@@ -67,7 +67,7 @@ const [isUploading, setIsUploading] = useState(false);
       redirection("/home")
 
     } catch (error) {
-      console.log(error)
+      redirection("/home")
     }
 
   }
