@@ -146,8 +146,9 @@
 } 
 
 .Spinner{
-  
-  justify-content: center;
+  width: 50%;
+  align-items: center;
+  align-content: center;
   margin: auto;
   color: #f8931f;
 
