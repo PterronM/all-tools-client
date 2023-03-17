@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+
+import { Link} from "react-router-dom";
 import CreateAveria from "./CreateAveria";
 import ListAveriasAdm from "./ListAveriasAdm";
 import ListRepuestosAdm from "./ListRepuestosAdm";
+import User from "./User";
+
 
 function PerfAdm() {
+
+
+
   return (
+    
     <div className="d-flex flex-column">
       <div className="mt-3 d-flex justify-content-around flex-wrap">
         <div className="solicitudes">
@@ -24,6 +31,14 @@ function PerfAdm() {
       >
         <p>Crear Averia</p>
       </Link>
+
+       <Link
+        className="btnPerfTec d-flex justify-content-center mt-5"
+        to="/listTecnicos"
+        element={<User/>}
+      >
+        <p>Eliminar User</p>
+      </Link> 
       </div>
    
     </div>

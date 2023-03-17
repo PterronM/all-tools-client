@@ -8,11 +8,11 @@ const getDetailsUserTec = (idUser)=>{
     return service.get(`/user/${idUser}`)
 }
 
-const updateAveriaStatus = (idUser,updateUser)=>{
+const updateUserStatus = (idUser,updateUser)=>{
     return service.patch(`/user/${idUser}/update`, updateUser)
 }
 
-const deleteAveriaId = (idUser)=>{
+const deleteUserId = (idUser)=>{
     return service.delete(`/user/${idUser}/delete`)
 }
 
@@ -20,6 +20,6 @@ const deleteAveriaId = (idUser)=>{
 export {
     getAllUserTecService,
     getDetailsUserTec,
-    updateAveriaStatus,
-    deleteAveriaId
+    updateUserStatus,
+    deleteUserId
 }

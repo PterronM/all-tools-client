@@ -16,6 +16,8 @@ import Login from "./pages/auth/Login";
 import Navbar from "./components/Navbar";
 import IsPrivate from "./components/IsPrivate";
 import AveriaDetails from "./components/AveriaDetails";
+import PerfAdm from './components/PerfAdm';
+import User from './components/User';
 
 function App() {
   return (
@@ -67,6 +69,17 @@ function App() {
             </IsPrivate>
           }
         />
+
+        <Route
+          path='/listTecnicos'
+          element={
+            <IsPrivate>
+              <User/>
+            </IsPrivate>
+          }
+        />
+
+
 
         {/* error FE routes */}
         <Route path="/error" element={<Error />} />
